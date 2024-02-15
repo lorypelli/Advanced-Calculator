@@ -15,7 +15,12 @@ buttons.forEach(b => b.addEventListener('click', () => {
             if (arr[arr.length - 2] == '+' || arr[arr.length - 2] == '-' || arr[arr.length - 2] == '×' || arr[arr.length - 2] == '÷') {
                 if (arr[arr.length - 3] == '+' || arr[arr.length - 3] == '-' || arr[arr.length - 3] == '×' || arr[arr.length - 3] == '÷') {
                     arr[arr.length - 3] = arr[arr.length - 2];
-                    arr[arr.length - 2] = '';
+                    arr.splice(2, 1);
+                }
+            }
+            if (arr[arr.length - 2] == '.') {
+                if (arr[arr.length - 3] == '.') {
+                    arr.splice(3, 1);
                 }
             }
             result.innerHTML = arr.join('');
