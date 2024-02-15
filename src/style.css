@@ -34,7 +34,6 @@ body {
 button {
   width: 60px;
   height: 32px;
-  background-color: red;
   color: white;
   border: none;
   border-radius: 5px;
@@ -43,50 +42,50 @@ button {
   transition: ease-in-out 0.25s;
 }
 
-button[data-type="primary"] {
+.primary {
   background-color: hsl(235 calc(1 * 85.6%) 64.7% / 1);
 }
 
-button[data-type="primary"]:hover {
+.primary:hover {
   background-color: hsl(235 calc(1 * 51.4%) 52.4% / 1);
 }
 
-button[data-type="primary"]:active {
+.primary:active {
   background-color: hsl(235 calc(1 * 46.7%) 44.1% / 1);
 }
 
-button[data-type="secondary"] { 
+.secondary { 
   background-color: hsl(228 calc(1 * 6%) 32.5% / 1);
 }
 
-button[data-type="secondary"]:hover { 
+.secondary:hover { 
   background-color: hsl(229 calc(1 * 4.8%) 44.9% / 1);
 }
 
-button[data-type="secondary"]:active { 
+.secondary:active { 
   background-color: hsl(223 calc(1 * 5.8%) 52.9% / 1);
 }
 
-button[data-type="success"] {
+.success {
   background-color: hsl(142 calc(1 * 56.1%) 32.2% / 1);
 }
 
-button[data-type="success"]:hover {
+.success:hover {
   background-color: hsl(141 calc(1 * 58.4%) 24.5% / 1);
 }
 
-button[data-type="success"]:active {
+.success:active {
   background-color: hsl(140 calc(1 * 60.7%) 21% / 1);
 }
 
-button[data-type="danger"] {
+.danger {
   background-color: hsl(358 calc(1 * 68.8%) 53.5% / 1);
 }
 
-button[data-type="danger"]:hover {
+.danger:hover {
   background-color: hsl(360 calc(1 * 60.2%) 39.4% / 1);
 }
 
-button[data-type="danger"]:active {
+.danger:active {
   background-color: hsl(359 calc(1 * 63.4%) 34.3% / 1);
 }

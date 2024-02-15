@@ -4,41 +4,40 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@600&display=swap">
-		<link rel="favicon" href="./vite.svg">
 		<title>Advanced Calculator</title>
-    <script type="module" src="./src/main.ts"></script>
+    <script type="module" src="./src/index.ts"></script>
 	</head>
   <body>
     <div id="result">|</div>
     <table id="calculator">
       <tbody>
         <tr>
-          <td><button data-type="secondary">7</button></td>
-          <td><button data-type="secondary">8</button></td>
-          <td><button data-type="secondary">9</button></td>
-          <td><button data-type="danger">DEL</button></td>
-          <td><button data-type="danger">AC</button></td>
+          <td><button class="secondary">7</button></td>
+          <td><button class="secondary">8</button></td>
+          <td><button class="secondary">9</button></td>
+          <td><button class="danger">DEL</button></td>
+          <td><button class="danger">AC</button></td>
         </tr>
         <tr>
-          <td><button data-type="secondary">4</button></td>
-          <td><button data-type="secondary">5</button></td>
-          <td><button data-type="secondary">6</button></td>
-          <td><button data-type="primary">x</button></td>
-          <td><button data-type="primary">÷</button></td>
+          <td><button class="secondary">4</button></td>
+          <td><button class="secondary">5</button></td>
+          <td><button class="secondary">6</button></td>
+          <td><button class="primary">×</button></td>
+          <td><button class="primary">÷</button></td>
         </tr>
         <tr>
-          <td><button data-type="secondary">1</button></td>
-          <td><button data-type="secondary">2</button></td>
-          <td><button data-type="secondary">3</button></td>
-          <td><button data-type="primary">+</button></td>
-          <td><button data-type="primary">-</button></td>
+          <td><button class="secondary">1</button></td>
+          <td><button class="secondary">2</button></td>
+          <td><button class="secondary">3</button></td>
+          <td><button class="primary">+</button></td>
+          <td><button class="primary">-</button></td>
         </tr>
         <tr>
-          <td><button data-type="secondary">0</button></td>
-          <td><button data-type="secondary">.</button></td>
-          <td><button data-type="success">Exp</button></td>
-          <td><button data-type="success">Ans</button></td>
-          <td><button data-type="success">=</button></td>
+          <td><button class="secondary">0</button></td>
+          <td><button class="secondary">.</button></td>
+          <td><button class="success">=</button></td>
+          <td><button class="success">❮</button></td>
+          <td><button class="success">❯</button></td>
         </tr>
       </tbody>
     </table>
