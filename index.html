@@ -12,6 +12,13 @@
     <table id="calculator">
       <tbody>
         <tr>
+          <td><button class="primary">(</button></td>
+          <td><button class="primary">)</button></td>
+          <td><button class="secondary">^</button></td>
+          <td><button class="secondary">.</button></td>
+          <td><button id="exit" class="danger">Exit</button></td>
+        </tr>
+        <tr>
           <td><button class="secondary">7</button></td>
           <td><button class="secondary">8</button></td>
           <td><button class="secondary">9</button></td>
@@ -34,12 +41,17 @@
         </tr>
         <tr>
           <td><button class="secondary">0</button></td>
-          <td><button class="secondary">.</button></td>
+          <td><button class="secondary">00</button></td>
           <td><button id="res" class="success">=</button></td>
           <td><button id="left" class="success">❮</button></td>
           <td><button id="right" class="success">❯</button></td>
         </tr>
       </tbody>
+    </table>
+    <table id="closedCalculator">
+      <tr>
+        <td><button id="open" class="success">Open</button></td>
+      </tr>
     </table>
   </body>
 </html>

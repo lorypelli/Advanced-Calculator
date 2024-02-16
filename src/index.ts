@@ -1,15 +1,15 @@
 import './style.css';
 const buttons = document.querySelectorAll('button');
 buttons.forEach(b => b.addEventListener('click', () => {
-    const result = document.querySelector('#result');
+    const result = document.querySelector('#result') as HTMLElement;
     if (result) {
-        const arr = result.innerHTML.split('');
+        const arr = result.innerText.split('');
         if (b.classList.contains('primary') || b.classList.contains('secondary')) {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
-                    arr.splice(i + 1, 0, b.innerHTML);
+                    arr.splice(i + 1, 0, b.innerText);
                     const temp = '|';
-                    arr[i] = b.innerHTML;
+                    arr[i] = b.innerText;
                     arr[i + 1] = temp;
                     break;
                 }
@@ -20,8 +20,8 @@ buttons.forEach(b => b.addEventListener('click', () => {
                     arr[arr.length - 2] = '';
                 }
             }
-            if (arr[arr.length - 2] == '.') {
-                if (arr[arr.length - 3] == '.') {
+            if (arr[arr.length - 2] == '.' || arr[arr.length - 2] == '^') {
+                if (arr[arr.length - 3] == '.' || arr[arr.length - 3] == '^') {
                     arr[arr.length - 3] = '';
                 }
             }
@@ -64,23 +64,45 @@ buttons.forEach(b => b.addEventListener('click', () => {
             break;
         }
         case 'res': {
-            const res = result.innerHTML.replaceAll('×', '*').replaceAll('÷', '/');
+            const res = result.innerText.replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**');
+            let newRes = '';
             let finalRes = '';
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[0] != '(' && (arr[i] == '(' && (arr[i - 1] != '×' && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(arr[i - 1])))) {
+                    newRes = arr.slice(0, i).join('') + '*' + arr.slice(i).join('');
+                    break;
+                }
+                else {
+                    newRes = res;
+                }
+            }
             try {
-                finalRes = eval(res.replace('|', ''));
+                finalRes = eval(newRes.replace('|', ''));
                 if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
                     finalRes = '∞';
                 }
             }
             catch {
-                finalRes = result.innerHTML.replace('|', '');
+                finalRes = result.innerText.replace('|', '');
             }
-            result.innerHTML = finalRes + '|';
+            result.innerText = finalRes + '|';
+            break;
+        }
+        case 'exit': {
+            const table = document.querySelectorAll('table');
+            table[0].style.display = 'none';
+            table[1].style.display = 'block';
+            break;
+        }
+        case 'open': {
+            const table = document.querySelectorAll('table');
+            table[1].style.display = 'none';
+            table[0].style.display = 'block';
             break;
         }
         }
         if (b.id != 'res') {
-            result.innerHTML = arr.join('');
+            result.innerText = arr.join('');
         }
     }
 }));

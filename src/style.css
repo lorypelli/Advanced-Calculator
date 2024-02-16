@@ -31,6 +31,10 @@ body {
   border-radius: 5px;
 }
 
+#closedCalculator {
+  display: none;
+}
+
 button {
   width: 60px;
   height: 32px;
