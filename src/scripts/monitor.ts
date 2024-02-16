@@ -13,8 +13,8 @@ buttons.forEach(b => b.addEventListener('click', () => {
                     break;
                 }
             }
-            if (arr[arr.length - 2] == '+' || arr[arr.length - 2] == '-' || arr[arr.length - 2] == '×' || arr[arr.length - 2] == '÷') {
-                if (arr[arr.length - 3] == '+' || arr[arr.length - 3] == '-' || arr[arr.length - 3] == '×' || arr[arr.length - 3] == '÷') {
+            if (['+', '-', '×', '÷'].includes(arr[arr.length - 2])) {
+                if (['+', '-', '×', '÷'].includes(arr[arr.length - 3])) {
                     arr[arr.length - 3] = arr[arr.length - 2];
                     arr[arr.length - 2] = '';
                 }
