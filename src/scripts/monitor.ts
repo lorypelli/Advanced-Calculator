@@ -62,8 +62,25 @@ buttons.forEach(b => b.addEventListener('click', () => {
             }
             break;
         }
+        case 'res': {
+            const res = result.innerHTML.replaceAll('×', '*').replaceAll('÷', '/');
+            let finalRes = '';
+            try {
+                finalRes = eval(res.replace('|', ''));
+                if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
+                    finalRes = '∞';
+                }
+            }
+            catch {
+                finalRes = result.innerHTML.replace('|', '');
+            }
+            result.innerHTML = finalRes + '|';
+            break;
         }
-        result.innerHTML = arr.join('');
+        }
+        if (b.id != 'res') {
+            result.innerHTML = arr.join('');
+        }
     }
 }));
-export {};
+export { };
