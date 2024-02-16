@@ -6,6 +6,7 @@ buttons.forEach(b => b.addEventListener('click', () => {
         if (b.classList.contains('primary') || b.classList.contains('secondary')) {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
+                    arr.splice(i + 1, 0, b.innerHTML);
                     const temp = '|';
                     arr[i] = b.innerHTML;
                     arr[i + 1] = temp;
@@ -37,6 +38,28 @@ buttons.forEach(b => b.addEventListener('click', () => {
         case 'clear': {
             arr.length = 1;
             arr[0] = '|';
+            break;
+        }
+        case 'left': {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[0] != '|' && arr[i] == '|') {
+                    const temp = '|';
+                    arr[i] = arr[i - 1];
+                    arr[i - 1] = temp;
+                    break;
+                }
+            }
+            break;
+        }
+        case 'right': {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == '|') {
+                    const temp = '|';
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    break;
+                }
+            }
             break;
         }
         }
