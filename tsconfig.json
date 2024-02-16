@@ -4,6 +4,8 @@
       "strictNullChecks": true,
       "esModuleInterop": true,
       "noUnusedLocals": true,
-      "noUnusedParameters": true
+      "noUnusedParameters": true,
+      "module": "ES2015",
+      "moduleResolution": "Bundler"
   }
 }
