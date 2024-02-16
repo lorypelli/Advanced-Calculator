@@ -64,20 +64,18 @@ buttons.forEach(b => b.addEventListener('click', () => {
             break;
         }
         case 'res': {
-            const res = result.innerText.replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**');
-            let newRes = '';
             let finalRes = '';
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '(' && (arr[i] == '(' && (arr[i - 1] != '×' && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(arr[i - 1])))) {
-                    newRes = arr.slice(0, i).join('') + '*' + arr.slice(i).join('');
+                    arr.splice(i, 0, '×');
                     break;
                 }
-                else {
-                    newRes = res;
+                while (arr[i] == '0' && arr[i - 1] == '0' && !['+', '-', '×', '÷'].includes(arr[i - 1])) {
+                    arr.splice(i, 1);
                 }
             }
             try {
-                finalRes = eval(newRes.replace('|', ''));
+                finalRes = eval(arr.join('').replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**').replace('|', ''));
                 if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
                     finalRes = '∞';
                 }
