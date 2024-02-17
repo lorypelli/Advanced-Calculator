@@ -4,6 +4,9 @@ buttons.forEach(b => b.addEventListener('click', () => {
     const result = document.querySelector('#result') as HTMLElement;
     if (result) {
         const arr = result.innerText.split('');
+        if (arr[0] == '∞') {
+            arr.splice(0, 1);
+        }
         if (b.classList.contains('primary') || b.classList.contains('secondary')) {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
