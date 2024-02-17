@@ -1,5 +1,5 @@
 * {
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: 'Martian Mono', monospace;
   text-align: center;
 }
@@ -16,6 +16,7 @@ body {
   justify-content: center;
   margin: 0 auto;
   height: 100vh;
+  transform: scale(2);
 }
 
 #result {
