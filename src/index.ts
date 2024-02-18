@@ -17,6 +17,27 @@ buttons.forEach(b => b.addEventListener('click', () => {
                     break;
                 }
             }
+            switch (b.innerText) {
+            case '(': {
+                arr.push(')');
+                break;
+            }
+            case 'sin':
+            case 'cos':
+            case 'tan':
+            case 'log': {
+                arr.push('(');
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] == '|') {
+                        arr[i] = '';
+                        arr.push('|');
+                        break;
+                    }
+                }
+                arr.push(')');
+                break;
+            }
+            }
             if (['+', '-', '×', '÷'].includes(arr[arr.length - 2])) {
                 if (['+', '-', '×', '÷'].includes(arr[arr.length - 3])) {
                     arr[arr.length - 3] = arr[arr.length - 2];
@@ -33,8 +54,8 @@ buttons.forEach(b => b.addEventListener('click', () => {
         case 'del': {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
-                    if (['s', 'c', 't', 'l'].includes(arr[i - 3])) {
-                        arr.splice(i - 3, 3);
+                    if (['s', 'c', 't', 'l'].includes(arr[i - 4]) && ['i', 'o', 'a'].includes(arr[i - 3]) && ['n', 's', 'g'].includes(arr[i - 2])) {
+                        arr.splice(i - 4, 4);
                     }
                     else {
                         arr.splice(i - 1, 1);
