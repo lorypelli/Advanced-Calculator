@@ -10,11 +10,28 @@
     <link rel="favicon" href="./favicon.ico">
 		<title>Advanced Calculator</title>
     <script type="module" src="./src/index.ts"></script>
+    <script>
+      function factorial(n) {
+        if (n == 0) {
+          return 1;
+        }
+        else {
+          return n * factorial(n - 1);
+        }
+      }
+    </script>
 	</head>
   <body>
     <div id="result">|</div>
     <table id="calculator">
       <tbody>
+        <tr>
+          <td><button class="primary">sin</button></td>
+          <td><button class="primary">cos</button></td>
+          <td><button class="primary">tan</button></td>
+          <td><button class="primary">log</button></td>
+          <td><button class="secondary">!</button></td>
+        </tr>
         <tr>
           <td><button class="primary">(</button></td>
           <td><button class="primary">)</button></td>

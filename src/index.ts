@@ -23,8 +23,8 @@ buttons.forEach(b => b.addEventListener('click', () => {
                     arr[arr.length - 2] = '';
                 }
             }
-            if (arr[arr.length - 2] == '.' || arr[arr.length - 2] == '^') {
-                if (arr[arr.length - 3] == '.' || arr[arr.length - 3] == '^') {
+            if (arr[arr.length - 2] == '.' || arr[arr.length - 2] == '^' || arr[arr.length - 2] == '!') {
+                if (arr[arr.length - 3] == '.' || arr[arr.length - 3] == '^' || arr[arr.length - 3] == '!') {
                     arr[arr.length - 3] = '';
                 }
             }
@@ -33,7 +33,12 @@ buttons.forEach(b => b.addEventListener('click', () => {
         case 'del': {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
-                    arr.splice(i - 1, 1);
+                    if (['s', 'c', 't', 'l'].includes(arr[i - 3])) {
+                        arr.splice(i - 3, 3);
+                    }
+                    else {
+                        arr.splice(i - 1, 1);
+                    }
                     break;
                 }
             }
@@ -78,7 +83,9 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 }
             }
             try {
-                finalRes = eval(arr.join('').replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**').replace('|', ''));
+                finalRes = eval(arr.join('').replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**').replaceAll('sin', 'Math.sin').replaceAll('cos', 'Math.cos').replaceAll('tan', 'Math.tan').replaceAll('log', 'Math.log').replace(/(\d+)!/g, (number) => {
+                    return `factorial(${number.replace('!', '')})`;
+                }).replace('|', ''));
                 if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
                     finalRes = '∞';
                 }
