@@ -86,7 +86,7 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 finalRes = eval(arr.join('').replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**').replaceAll('sin', 'Math.sin').replaceAll('cos', 'Math.cos').replaceAll('tan', 'Math.tan').replaceAll('log', 'Math.log').replace(/(\d+)!/g, (number) => {
                     return `factorial(${number.replace('!', '')})`;
                 }).replace('|', ''));
-                if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
+                if (!finalRes || Number.isNaN(finalRes) || finalRes == 'Infinity') {
                     finalRes = '∞';
                 }
             }
