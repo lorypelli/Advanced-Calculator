@@ -74,8 +74,16 @@ buttons.forEach(b => b.addEventListener('click', () => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
                     const temp = '|';
-                    arr[i] = arr[i - 1];
-                    arr[i - 1] = temp;
+                    if (['n', 's', 'g'].includes(arr[i - 1])) {
+                        arr[i] = arr[i - 1];
+                        arr[i - 1] = arr[i - 2];
+                        arr[i - 2] = arr[i - 3];
+                        arr[i - 3] = temp;
+                    }
+                    else {
+                        arr[i] = arr[i - 1];
+                        arr[i - 1] = temp;
+                    }
                     break;
                 }
             }
@@ -85,8 +93,16 @@ buttons.forEach(b => b.addEventListener('click', () => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
                     const temp = '|';
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
+                    if (['s', 'c', 't', 'l'].includes(arr[i + 1])) {
+                        arr[i] = arr[i + 1];
+                        arr[i + 1] = arr[i + 2];
+                        arr[i + 2] = arr[i + 3];
+                        arr[i + 3] = temp;
+                    }
+                    else {
+                        arr[i] = arr[i + 1];
+                        arr[i + 1] = temp;
+                    }
                     break;
                 }
             }
