@@ -2,6 +2,10 @@
   overflow: hidden;
   font-family: 'Martian Mono', monospace;
   text-align: center;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 :focus {
