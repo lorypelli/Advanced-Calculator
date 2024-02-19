@@ -26,15 +26,32 @@ buttons.forEach(b => b.addEventListener('click', () => {
             case 'cos':
             case 'tan':
             case 'log': {
-                arr.push('(');
+                let open = 0;
+                let close = 0;
                 for (let i = 0; i < arr.length; i++) {
-                    if (arr[i] == '|') {
-                        arr[i] = '';
-                        arr.push('|');
+                    if (['sin', 'cos', 'tan', 'log'].includes(arr[i])) {
+                        if (arr[i + 1] == '|') {
+                            arr[i + 1] = '(';
+                            arr[i + 2] = '|';
+                            arr[i + 3] = ')';
+                        }
+                    }
+                    switch (arr[i]) {
+                    case '(': {
+                        open++;
                         break;
                     }
+                    case ')': {
+                        close++;
+                        break;
+                    }
+                    }
                 }
-                arr.push(')');
+                if (open > close) {
+                    for (let i = 0; i < open - close; i++) {
+                        arr.push(')');
+                    }
+                }
                 break;
             }
             }
