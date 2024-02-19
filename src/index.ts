@@ -178,12 +178,12 @@ document.addEventListener('keydown', (e) => {
         if (arr[0] == '∞') {
             arr.splice(0, 1);
         }
-        if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', 'x', '/', '(', ')', 's', 'c', 't', 'l', '.', '^', '!'].includes(e.key)) {
+        if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', 'x', '*', '/', '(', ')', 's', 'c', 't', 'l', '.', '^', '!'].includes(e.key)) {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
-                    arr.splice(i + 1, 0, e.key.replaceAll('x', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log'));
+                    arr.splice(i + 1, 0, e.key.replaceAll('x', '×').replaceAll('*', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log'));
                     const temp = '|';
-                    arr[i] = e.key.replaceAll('x', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log');
+                    arr[i] = e.key.replaceAll('x', '×').replaceAll('*', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log');
                     arr[i + 1] = temp;
                     break;
                 }
