@@ -91,11 +91,12 @@ buttons.forEach(b => b.addEventListener('click', () => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
                     const temp = '|';
-                    if (['n', 's', 'g'].includes(arr[i - 1])) {
+                    if (['n', 's', 'g'].includes(arr[i - 2])) {
                         arr[i] = arr[i - 1];
                         arr[i - 1] = arr[i - 2];
                         arr[i - 2] = arr[i - 3];
-                        arr[i - 3] = temp;
+                        arr[i - 3] = arr[i - 4];
+                        arr[i - 4] = temp;
                     }
                     else {
                         arr[i] = arr[i - 1];
@@ -114,7 +115,8 @@ buttons.forEach(b => b.addEventListener('click', () => {
                         arr[i] = arr[i + 1];
                         arr[i + 1] = arr[i + 2];
                         arr[i + 2] = arr[i + 3];
-                        arr[i + 3] = temp;
+                        arr[i + 3] = arr[i + 4];
+                        arr[i + 4] = temp;
                     }
                     else {
                         arr[i] = arr[i + 1];
@@ -264,11 +266,12 @@ document.addEventListener('keydown', (e) => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
                     const temp = '|';
-                    if (['n', 's', 'g'].includes(arr[i - 1])) {
+                    if (['n', 's', 'g'].includes(arr[i - 2])) {
                         arr[i] = arr[i - 1];
                         arr[i - 1] = arr[i - 2];
                         arr[i - 2] = arr[i - 3];
-                        arr[i - 3] = temp;
+                        arr[i - 3] = arr[i - 4];
+                        arr[i - 4] = temp;
                     }
                     else {
                         arr[i] = arr[i - 1];
@@ -287,7 +290,8 @@ document.addEventListener('keydown', (e) => {
                         arr[i] = arr[i + 1];
                         arr[i + 1] = arr[i + 2];
                         arr[i + 2] = arr[i + 3];
-                        arr[i + 3] = temp;
+                        arr[i + 3] = arr[i + 4];
+                        arr[i + 4] = temp;
                     }
                     else {
                         arr[i] = arr[i + 1];
