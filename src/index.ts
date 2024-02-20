@@ -132,6 +132,10 @@ buttons.forEach(b => b.addEventListener('click', () => {
                     arr.splice(i, 0, '×');
                     break;
                 }
+                if (!Number.isNaN(arr[i - 1]) && ['n', 's', 'g'].includes(arr[i])) {
+                    arr.splice(i - 2, 0, '×');
+                    break;
+                }
                 while (arr[i] == '0' && arr[i - 1] == '0' && !['+', '-', '×', '÷'].includes(arr[i - 1])) {
                     arr.splice(i, 1);
                 }
@@ -142,9 +146,6 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 }).replace('|', ''));
                 if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
                     finalRes = '∞';
-                }
-                else if (!finalRes) {
-                    finalRes = result.innerText.replace('|', '');
                 }
             }
             catch {
@@ -301,6 +302,10 @@ document.addEventListener('keydown', (e) => {
                     arr.splice(i, 0, '×');
                     break;
                 }
+                if (!Number.isNaN(arr[i - 1]) && ['n', 's', 'g'].includes(arr[i])) {
+                    arr.splice(i - 2, 0, '×');
+                    break;
+                }
                 while (arr[i] == '0' && arr[i - 1] == '0' && !['+', '-', '×', '÷'].includes(arr[i - 1])) {
                     arr.splice(i, 1);
                 }
@@ -311,9 +316,6 @@ document.addEventListener('keydown', (e) => {
                 }).replace('|', ''));
                 if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
                     finalRes = '∞';
-                }
-                else if (!finalRes) {
-                    finalRes = result.innerText.replace('|', '');
                 }
             }
             catch {
