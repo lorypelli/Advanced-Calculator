@@ -55,15 +55,12 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 break;
             }
             }
-            if (['+', '-', '×', '÷'].includes(arr[arr.length - 2])) {
-                if (['+', '-', '×', '÷'].includes(arr[arr.length - 3])) {
-                    arr[arr.length - 3] = arr[arr.length - 2];
-                    arr[arr.length - 2] = '';
+            for (let i = 0; i < arr.length; i++) {
+                if (['+', '-', '×', '÷'].includes(b.innerText) && ['+', '-', '×', '÷'].includes(arr[i - 2])) {
+                    arr.splice(i - 2, 1);
                 }
-            }
-            if (arr[arr.length - 2] == '.' || arr[arr.length - 2] == '^' || arr[arr.length - 2] == '!') {
-                if (arr[arr.length - 3] == '.' || arr[arr.length - 3] == '^' || arr[arr.length - 3] == '!') {
-                    arr[arr.length - 3] = '';
+                if (['.', '^', '!'].includes(b.innerText) && ['.', '^', '!'].includes(arr[i - 2])) {
+                    arr.splice(i - 2, 1);
                 }
             }
         }
@@ -181,6 +178,7 @@ buttons.forEach(b => b.addEventListener('click', () => {
     }
 }));
 document.addEventListener('keydown', (e) => {
+    e.preventDefault();
     const result = document.querySelector('#result') as HTMLElement;
     if (result) {
         const arr = result.innerText.split('');
@@ -198,15 +196,12 @@ document.addEventListener('keydown', (e) => {
                 }
             }
         }
-        if (['+', '-', '×', '÷'].includes(arr[arr.length - 2])) {
-            if (['+', '-', '×', '÷'].includes(arr[arr.length - 3])) {
-                arr[arr.length - 3] = arr[arr.length - 2];
-                arr[arr.length - 2] = '';
+        for (let i = 0; i < arr.length; i++) {
+            if (['+', '-', '×', '÷'].includes(e.key) && ['+', '-', '×', '÷'].includes(arr[i - 2])) {
+                arr.splice(i - 2, 1);
             }
-        }
-        if (arr[arr.length - 2] == '.' || arr[arr.length - 2] == '^' || arr[arr.length - 2] == '!') {
-            if (arr[arr.length - 3] == '.' || arr[arr.length - 3] == '^' || arr[arr.length - 3] == '!') {
-                arr[arr.length - 3] = '';
+            if (['.', '^', '!'].includes(e.key) && ['.', '^', '!'].includes(arr[i - 2])) {
+                arr.splice(i - 2, 1);
             }
         }
         switch (e.key) {
@@ -305,7 +300,8 @@ document.addEventListener('keydown', (e) => {
             }
             break;
         }
-        case '=': {
+        case '=':
+        case 'Enter': {
             let finalRes = '';
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '(' && (arr[i] == '(' && (arr[i - 1] != '×' && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(arr[i - 1])))) {
@@ -353,7 +349,7 @@ document.addEventListener('keydown', (e) => {
             break;
         }
         }
-        if (e.key != '=') {
+        if (!['=', 'Enter'].includes(e.key)) {
             result.innerText = arr.join('');
         }
     }
