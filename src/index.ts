@@ -55,14 +55,6 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 break;
             }
             }
-            for (let i = 0; i < arr.length; i++) {
-                if (['+', '-', '×', '÷'].includes(b.innerText) && ['+', '-', '×', '÷'].includes(arr[i - 2])) {
-                    arr.splice(i - 2, 1);
-                }
-                if (['.', '^', '!'].includes(b.innerText) && ['.', '^', '!'].includes(arr[i - 2])) {
-                    arr.splice(i - 2, 1);
-                }
-            }
         }
         switch (b.id) {
         case 'del': {
@@ -194,14 +186,6 @@ document.addEventListener('keydown', (e) => {
                     arr[i + 1] = temp;
                     break;
                 }
-            }
-        }
-        for (let i = 0; i < arr.length; i++) {
-            if (['+', '-', '×', '÷'].includes(e.key) && ['+', '-', '×', '÷'].includes(arr[i - 2])) {
-                arr.splice(i - 2, 1);
-            }
-            if (['.', '^', '!'].includes(e.key) && ['.', '^', '!'].includes(arr[i - 2])) {
-                arr.splice(i - 2, 1);
             }
         }
         switch (e.key) {
