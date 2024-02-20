@@ -132,7 +132,7 @@ buttons.forEach(b => b.addEventListener('click', () => {
                     arr.splice(i, 0, '×');
                     break;
                 }
-                if (!Number.isNaN(arr[i - 1]) && ['n', 's', 'g'].includes(arr[i])) {
+                if (!isNaN(parseFloat(arr[i - 1])) && ['n', 's', 'g'].includes(arr[i])) {
                     arr.splice(i - 2, 0, '×');
                     break;
                 }
@@ -144,8 +144,11 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 finalRes = eval(arr.join('').replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**').replaceAll('sin', 'Math.sin').replaceAll('cos', 'Math.cos').replaceAll('tan', 'Math.tan').replaceAll('log', 'Math.log').replace(/(\d+)!/g, (number) => {
                     return `factorial(${number.replace('!', '')})`;
                 }).replace('|', ''));
-                if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
+                if (finalRes == 'Infinity') {
                     finalRes = '∞';
+                }
+                else if (isNaN(parseFloat(finalRes))) {
+                    finalRes = result.innerText.replace('|', '');
                 }
             }
             catch {
@@ -302,7 +305,7 @@ document.addEventListener('keydown', (e) => {
                     arr.splice(i, 0, '×');
                     break;
                 }
-                if (!Number.isNaN(arr[i - 1]) && ['n', 's', 'g'].includes(arr[i])) {
+                if (!isNaN(parseFloat(arr[i - 1])) && ['n', 's', 'g'].includes(arr[i])) {
                     arr.splice(i - 2, 0, '×');
                     break;
                 }
@@ -314,8 +317,11 @@ document.addEventListener('keydown', (e) => {
                 finalRes = eval(arr.join('').replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**').replaceAll('sin', 'Math.sin').replaceAll('cos', 'Math.cos').replaceAll('tan', 'Math.tan').replaceAll('log', 'Math.log').replace(/(\d+)!/g, (number) => {
                     return `factorial(${number.replace('!', '')})`;
                 }).replace('|', ''));
-                if (Number.isNaN(finalRes) || finalRes == 'Infinity') {
+                if (finalRes == 'Infinity') {
                     finalRes = '∞';
+                }
+                else if (isNaN(parseFloat(finalRes))) {
+                    finalRes = result.innerText.replace('|', '');
                 }
             }
             catch {
