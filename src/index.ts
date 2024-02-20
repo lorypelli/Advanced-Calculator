@@ -4,7 +4,7 @@ buttons.forEach(b => b.addEventListener('click', () => {
     const result = document.querySelector('#result') as HTMLElement;
     if (result) {
         const arr = result.innerText.split('');
-        if (arr[0] == '∞') {
+        if (arr[0] == '∞' || arr[0] == '-∞') {
             arr.splice(0, 1);
         }
         if (b.classList.contains('primary') || b.classList.contains('secondary')) {
@@ -149,6 +149,9 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 if (finalRes == 'Infinity') {
                     finalRes = '∞';
                 }
+                else if (finalRes == '-Infinity') {
+                    finalRes = '-∞';
+                }
                 else if (isNaN(parseFloat(finalRes))) {
                     finalRes = result.innerText.replace('|', '');
                 }
@@ -181,7 +184,7 @@ document.addEventListener('keydown', (e) => {
     const result = document.querySelector('#result') as HTMLElement;
     if (result) {
         const arr = result.innerText.split('');
-        if (arr[0] == '∞') {
+        if (arr[0] == '∞' || arr[0] == '-∞') {
             arr.splice(0, 1);
         }
         if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', 'x', '*', '/', '(', ')', 's', 'c', 't', 'l', '.', '^', '!'].includes(e.key)) {
@@ -323,6 +326,9 @@ document.addEventListener('keydown', (e) => {
                 }).replace('|', ''));
                 if (finalRes == 'Infinity') {
                     finalRes = '∞';
+                }
+                else if (finalRes == '-Infinity') {
+                    finalRes = '-∞';
                 }
                 else if (isNaN(parseFloat(finalRes))) {
                     finalRes = result.innerText.replace('|', '');
