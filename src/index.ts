@@ -1,5 +1,6 @@
 import './style.css';
 const buttons = document.querySelectorAll('button');
+const temp = '|';
 buttons.forEach(b => b.addEventListener('click', () => {
     const result = document.querySelector('#result') as HTMLElement;
     if (result) {
@@ -11,7 +12,6 @@ buttons.forEach(b => b.addEventListener('click', () => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
                     arr.splice(i + 1, 0, b.innerText);
-                    const temp = '|';
                     arr[i] = b.innerText;
                     arr[i + 1] = temp;
                     break;
@@ -79,7 +79,6 @@ buttons.forEach(b => b.addEventListener('click', () => {
         case 'left': {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
-                    const temp = '|';
                     if (['n', 's', 'g'].includes(arr[i - 2])) {
                         arr[i] = arr[i - 1];
                         arr[i - 1] = arr[i - 2];
@@ -99,7 +98,6 @@ buttons.forEach(b => b.addEventListener('click', () => {
         case 'right': {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
-                    const temp = '|';
                     if (['s', 'c', 't', 'l'].includes(arr[i + 1])) {
                         arr[i] = arr[i + 1];
                         arr[i + 1] = arr[i + 2];
@@ -181,7 +179,6 @@ document.addEventListener('keydown', (e) => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
                     arr.splice(i + 1, 0, e.key.replaceAll('x', '×').replaceAll('*', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log'));
-                    const temp = '|';
                     arr[i] = e.key.replaceAll('x', '×').replaceAll('*', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log');
                     arr[i + 1] = temp;
                     break;
@@ -247,7 +244,6 @@ document.addEventListener('keydown', (e) => {
         case 'ArrowLeft': {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
-                    const temp = '|';
                     if (['n', 's', 'g'].includes(arr[i - 2])) {
                         arr[i] = arr[i - 1];
                         arr[i - 1] = arr[i - 2];
@@ -267,7 +263,6 @@ document.addEventListener('keydown', (e) => {
         case 'ArrowRight': {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
-                    const temp = '|';
                     if (['s', 'c', 't', 'l'].includes(arr[i + 1])) {
                         arr[i] = arr[i + 1];
                         arr[i + 1] = arr[i + 2];
