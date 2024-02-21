@@ -61,7 +61,13 @@ buttons.forEach(b => b.addEventListener('click', () => {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
                     if (['s', 'c', 't', 'l'].includes(arr[i - 4]) && ['i', 'o', 'a'].includes(arr[i - 3]) && ['n', 's', 'g'].includes(arr[i - 2])) {
-                        arr.splice(i - 4, 4);
+                        if (arr[i - 1] == '(' && arr[i + 1] == ')') {
+                            arr.splice(i - 4, 4);
+                            arr.splice(i - 3, 1);
+                        }
+                        else {
+                            arr.splice(i - 4, 4);
+                        }
                     }
                     else {
                         arr.splice(i - 1, 1);
