@@ -10,8 +10,11 @@ buttons.forEach(b => b.addEventListener('click', () => {
         }
         if (b.classList.contains('primary') || b.classList.contains('secondary')) {
             const c = arr.indexOf('|');
-            if (['+', '-', '×', '÷', '.', '^', '!'].includes(b.innerHTML) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])) {
+            if (['+', '-', '×', '÷', '.', '^', '!'].includes(b.innerText) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])) {
                 arr.splice(c - 1, 1);
+            }
+            else if (['+', '-', '×', '÷', '.', '^', '!'].includes(b.innerText) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c + 1])) {
+                arr.splice(c + 1, 1);
             }
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
@@ -187,6 +190,9 @@ document.addEventListener('keydown', (e) => {
             const c = arr.indexOf('|');
             if (['+', '-', '×', '÷', '.', '^', '!'].includes(e.key) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])) {
                 arr.splice(c - 1, 1);
+            }
+            else if (['+', '-', '×', '÷', '.', '^', '!'].includes(e.key) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c + 1])) {
+                arr.splice(c + 1, 1);
             }
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
