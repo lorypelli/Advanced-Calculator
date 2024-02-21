@@ -127,13 +127,11 @@ buttons.forEach(b => b.addEventListener('click', () => {
         case 'res': {
             let finalRes = '';
             for (let i = 0; i < arr.length; i++) {
-                if (arr[0] != '(' && (arr[i] == '(' && (arr[i - 1] != '×' && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(arr[i - 1])))) {
+                while (arr[0] != '(' && (arr[i] == '(' && (arr[i - 1] != '×' && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(arr[i - 1])))) {
                     arr.splice(i, 0, '×');
-                    break;
                 }
-                if (!isNaN(parseFloat(arr[i - 1])) && ['s', 'c', 't', 'l'].includes(arr[i])) {
+                while (!isNaN(parseFloat(arr[i - 1])) && ['s', 'c', 't', 'l'].includes(arr[i])) {
                     arr.splice(i, 0, '×');
-                    break;
                 }
                 while (arr[i] == '0' && arr[i - 1] == '0' && !['+', '-', '×', '÷'].includes(arr[i - 1])) {
                     arr.splice(i, 1);
@@ -297,13 +295,11 @@ document.addEventListener('keydown', (e) => {
         case 'Enter': {
             let finalRes = '';
             for (let i = 0; i < arr.length; i++) {
-                if (arr[0] != '(' && (arr[i] == '(' && (arr[i - 1] != '×' && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(arr[i - 1])))) {
+                while (arr[0] != '(' && (arr[i] == '(' && (arr[i - 1] != '×' && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(arr[i - 1])))) {
                     arr.splice(i, 0, '×');
-                    break;
                 }
-                if (!isNaN(parseFloat(arr[i - 1])) && ['s', 'c', 't', 'l'].includes(arr[i])) {
+                while (!isNaN(parseFloat(arr[i - 1])) && ['s', 'c', 't', 'l'].includes(arr[i])) {
                     arr.splice(i, 0, '×');
-                    break;
                 }
                 while (arr[i] == '0' && arr[i - 1] == '0' && !['+', '-', '×', '÷'].includes(arr[i - 1])) {
                     arr.splice(i, 1);
