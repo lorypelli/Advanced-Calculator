@@ -136,9 +136,6 @@ buttons.forEach(b => b.addEventListener('click', () => {
                 while (!isNaN(parseFloat(arr[i - 1])) && ['s', 'c', 't', 'l'].includes(arr[i])) {
                     arr.splice(i, 0, '×');
                 }
-                while (arr[i] == '0' && arr[i - 1] == '0' && !['+', '-', '×', '÷'].includes(arr[i - 1])) {
-                    arr.splice(i, 1);
-                }
             }
             try {
                 finalRes = eval(arr.join('').replaceAll('×', '*').replaceAll('÷', '/').replaceAll('^', '**').replaceAll('sin', 'Math.sin').replaceAll('cos', 'Math.cos').replaceAll('tan', 'Math.tan').replaceAll('log', 'Math.log').replace(/(\d+)!/g, (number) => {
@@ -312,9 +309,6 @@ document.addEventListener('keydown', (e) => {
                 }
                 while (!isNaN(parseFloat(arr[i - 1])) && ['s', 'c', 't', 'l'].includes(arr[i])) {
                     arr.splice(i, 0, '×');
-                }
-                while (arr[i] == '0' && arr[i - 1] == '0' && !['+', '-', '×', '÷'].includes(arr[i - 1])) {
-                    arr.splice(i, 1);
                 }
             }
             try {
