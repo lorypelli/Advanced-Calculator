@@ -18,8 +18,7 @@ buttons.forEach(b => b.addEventListener('click', () => {
             }
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
-                    arr.splice(i + 1, 0, b.innerText);
-                    arr[i] = b.innerText;
+                    arr.splice(i, 0, b.innerText);
                     arr[i + 1] = temp;
                     break;
                 }
@@ -194,8 +193,7 @@ document.addEventListener('keydown', (e) => {
             }
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
-                    arr.splice(i + 1, 0, key.replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log'));
-                    arr[i] = key.replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log');
+                    arr.splice(i, 0, key.replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log'));
                     arr[i + 1] = temp;
                     break;
                 }
