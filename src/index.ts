@@ -178,29 +178,30 @@ buttons.forEach(b => b.addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
     e.preventDefault();
     const result = document.querySelector('#result') as HTMLElement;
+    const key = e.key.replaceAll('*', '×').replaceAll('x', '×').replaceAll('/', '÷');
     if (result) {
         const arr = result.innerText.split('');
         if (arr[0] == '∞' || arr[0] == '-∞') {
             arr.splice(0, 1);
         }
-        if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', 'x', '*', '/', '(', ')', 's', 'c', 't', 'l', '.', '^', '!'].includes(e.key)) {
+        if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '×', '÷', '(', ')', 's', 'c', 't', 'l', '.', '^', '!'].includes(key)) {
             const c = arr.indexOf('|');
-            if (['+', '-', '×', '÷', '.', '^', '!'].includes(e.key) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])) {
+            if (['+', '-', '×', '÷', '.', '^', '!'].includes(key) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])) {
                 arr.splice(c - 1, 1);
             }
-            else if (['+', '-', '×', '÷', '.', '^', '!'].includes(e.key) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c + 1])) {
+            else if (['+', '-', '×', '÷', '.', '^', '!'].includes(key) && ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c + 1])) {
                 arr.splice(c + 1, 1);
             }
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] == '|') {
-                    arr.splice(i + 1, 0, e.key.replaceAll('x', '×').replaceAll('*', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log'));
-                    arr[i] = e.key.replaceAll('x', '×').replaceAll('*', '×').replaceAll('/', '÷').replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log');
+                    arr.splice(i + 1, 0, key.replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log'));
+                    arr[i] = key.replaceAll('s', 'sin').replaceAll('c', 'cos').replaceAll('t', 'tan').replaceAll('l', 'log');
                     arr[i + 1] = temp;
                     break;
                 }
             }
         }
-        switch (e.key) {
+        switch (key) {
         case '(': {
             arr.push(')');
             break;
@@ -344,7 +345,7 @@ document.addEventListener('keydown', (e) => {
             break;
         }
         }
-        if (!['=', 'Enter'].includes(e.key)) {
+        if (!['=', 'Enter'].includes(key)) {
             result.innerText = arr.join('');
         }
     }
