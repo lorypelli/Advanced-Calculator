@@ -238,6 +238,12 @@ document.addEventListener('keydown', (e) => {
             }
             break;
         }
+        case 'r': {
+            const c = arr.indexOf('|');
+            arr.splice(c, 1);
+            arr.push('^', '(', '1', '/', '|', ')');
+            break;
+        }
         case 'Backspace': {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[0] != '|' && arr[i] == '|') {
