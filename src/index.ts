@@ -175,7 +175,9 @@ buttons.forEach(b => b.addEventListener('click', () => {
     }
 }));
 document.addEventListener('keydown', (e) => {
-    e.preventDefault();
+    if (e.key == 'Enter') {
+        e.preventDefault();
+    }
     const result = document.querySelector('#result') as HTMLElement;
     const key = e.key.replaceAll('*', '×').replaceAll('x', '×').replaceAll('/', '÷');
     if (result) {
