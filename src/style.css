@@ -63,15 +63,15 @@ button {
   background-color: hsl(235 calc(1 * 46.7%) 44.1% / 1);
 }
 
-.secondary { 
+.secondary {
   background-color: hsl(228 calc(1 * 6%) 32.5% / 1);
 }
 
-.secondary:hover { 
+.secondary:hover {
   background-color: hsl(229 calc(1 * 4.8%) 44.9% / 1);
 }
 
-.secondary:active { 
+.secondary:active {
   background-color: hsl(223 calc(1 * 5.8%) 52.9% / 1);
 }
 
