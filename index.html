@@ -1,81 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="description"
+            content="An Advanced Calculator to make fast and easy calculations"
+        />
+        <meta name="og:title" content="Advanced Calculator" />
+        <meta
+            name="og:description"
+            content="An Advanced Calculator to make fast and easy calculations"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@600&display=swap"
+        />
+        <link rel="favicon" href="./favicon.ico" />
+        <title>Advanced Calculator</title>
+        <script type="module" src="./src/index.ts"></script>
+        <script>
+            function factorial(n) {
+                if (n == 0) {
+                    return 1;
+                } else {
+                    return n * factorial(n - 1);
+                }
+            }
+        </script>
+    </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An Advanced Calculator to make fast and easy calculations">
-  <meta name="og:title" content="Advanced Calculator">
-  <meta name="og:description" content="An Advanced Calculator to make fast and easy calculations">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@600&display=swap">
-  <link rel="favicon" href="./favicon.ico">
-  <title>Advanced Calculator</title>
-  <script type="module" src="./src/index.ts"></script>
-  <script>
-    function factorial(n) {
-      if (n == 0) {
-        return 1;
-      }
-      else {
-        return n * factorial(n - 1);
-      }
-    }
-  </script>
-</head>
-
-<body>
-  <div id="result">|</div>
-  <table id="calculator">
-    <tbody>
-      <tr>
-        <td><button class="primary">sin</button></td>
-        <td><button class="primary">cos</button></td>
-        <td><button class="primary">tan</button></td>
-        <td><button class="primary">log</button></td>
-        <td><button class="secondary">!</button></td>
-      </tr>
-      <tr>
-        <td><button class="primary">(</button></td>
-        <td><button class="primary">)</button></td>
-        <td><button class="secondary">^</button></td>
-        <td><button class="secondary">.</button></td>
-        <td><button id="exit" class="danger">Exit</button></td>
-      </tr>
-      <tr>
-        <td><button class="secondary">7</button></td>
-        <td><button class="secondary">8</button></td>
-        <td><button class="secondary">9</button></td>
-        <td><button id="del" class="danger">DEL</button></td>
-        <td><button id="clear" class="danger">AC</button></td>
-      </tr>
-      <tr>
-        <td><button class="secondary">4</button></td>
-        <td><button class="secondary">5</button></td>
-        <td><button class="secondary">6</button></td>
-        <td><button class="primary">×</button></td>
-        <td><button class="primary">÷</button></td>
-      </tr>
-      <tr>
-        <td><button class="secondary">1</button></td>
-        <td><button class="secondary">2</button></td>
-        <td><button class="secondary">3</button></td>
-        <td><button class="primary">+</button></td>
-        <td><button class="primary">-</button></td>
-      </tr>
-      <tr>
-        <td><button class="secondary">0</button></td>
-        <td><button class="secondary">00</button></td>
-        <td><button id="res" class="success">=</button></td>
-        <td><button id="left" class="success">❮</button></td>
-        <td><button id="right" class="success">❯</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <table id="closedCalculator">
-    <tr>
-      <td><button id="open" class="success">Open</button></td>
-    </tr>
-  </table>
-</body>
-
+    <body>
+        <div id="result">|</div>
+        <table id="calculator">
+            <tbody>
+                <tr>
+                    <td><button class="primary">sin</button></td>
+                    <td><button class="primary">cos</button></td>
+                    <td><button class="primary">tan</button></td>
+                    <td><button class="primary">log</button></td>
+                    <td><button class="secondary">!</button></td>
+                </tr>
+                <tr>
+                    <td><button class="primary">(</button></td>
+                    <td><button class="primary">)</button></td>
+                    <td><button class="secondary">^</button></td>
+                    <td><button class="secondary">.</button></td>
+                    <td><button id="exit" class="danger">Exit</button></td>
+                </tr>
+                <tr>
+                    <td><button class="secondary">7</button></td>
+                    <td><button class="secondary">8</button></td>
+                    <td><button class="secondary">9</button></td>
+                    <td><button id="del" class="danger">DEL</button></td>
+                    <td><button id="clear" class="danger">AC</button></td>
+                </tr>
+                <tr>
+                    <td><button class="secondary">4</button></td>
+                    <td><button class="secondary">5</button></td>
+                    <td><button class="secondary">6</button></td>
+                    <td><button class="primary">×</button></td>
+                    <td><button class="primary">÷</button></td>
+                </tr>
+                <tr>
+                    <td><button class="secondary">1</button></td>
+                    <td><button class="secondary">2</button></td>
+                    <td><button class="secondary">3</button></td>
+                    <td><button class="primary">+</button></td>
+                    <td><button class="primary">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="secondary">0</button></td>
+                    <td><button class="secondary">pi</button></td>
+                    <td><button id="res" class="success">=</button></td>
+                    <td><button id="left" class="success">❮</button></td>
+                    <td><button id="right" class="success">❯</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="closedCalculator">
+            <tr>
+                <td><button id="open" class="success">Open</button></td>
+            </tr>
+        </table>
+    </body>
 </html>

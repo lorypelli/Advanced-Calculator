@@ -1,139 +1,138 @@
 * {
-  overflow: hidden;
-  font-family: 'Martian Mono', monospace;
-  text-align: center;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+    overflow: hidden;
+    font-family: 'Martian Mono', monospace;
+    text-align: center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 :focus {
-  outline: none;
+    outline: none;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  background-color: #363636;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  height: 100vh;
-  transform: scale(2.5);
+    display: flex;
+    flex-direction: column;
+    background-color: #363636;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 100vh;
+    transform: scale(2.5);
 }
 
 #result {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-x: auto;
-  width: 330px;
-  height: 50px;
-  color: white;
-  background-color: hsl(225 calc(1 * 6.3%) 12.5% / 1);
-  border: none;
-  border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    width: 335px;
+    height: 50px;
+    color: white;
+    background-color: hsl(225 calc(1 * 6.3%) 12.5% / 1);
+    border: none;
+    border-radius: 5px;
 }
 
 #closedCalculator {
-  display: none;
+    display: none;
 }
 
 button {
-  width: 60px;
-  height: 32px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  margin: 2px;
-  cursor: pointer;
-  transition: ease-in-out 0.25s;
+    width: 64px;
+    height: 32px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: ease-in-out 0.25s;
 }
 
 .primary {
-  background-color: hsl(235 calc(1 * 85.6%) 64.7% / 1);
+    background-color: hsl(235 calc(1 * 85.6%) 64.7% / 1);
 }
 
 .primary:hover {
-  background-color: hsl(235 calc(1 * 51.4%) 52.4% / 1);
+    background-color: hsl(235 calc(1 * 51.4%) 52.4% / 1);
 }
 
 .primary:active {
-  background-color: hsl(235 calc(1 * 46.7%) 44.1% / 1);
+    background-color: hsl(235 calc(1 * 46.7%) 44.1% / 1);
 }
 
 .secondary {
-  background-color: hsl(228 calc(1 * 6%) 32.5% / 1);
+    background-color: hsl(228 calc(1 * 6%) 32.5% / 1);
 }
 
 .secondary:hover {
-  background-color: hsl(229 calc(1 * 4.8%) 44.9% / 1);
+    background-color: hsl(229 calc(1 * 4.8%) 44.9% / 1);
 }
 
 .secondary:active {
-  background-color: hsl(223 calc(1 * 5.8%) 52.9% / 1);
+    background-color: hsl(223 calc(1 * 5.8%) 52.9% / 1);
 }
 
 .success {
-  background-color: hsl(142 calc(1 * 56.1%) 32.2% / 1);
+    background-color: hsl(142 calc(1 * 56.1%) 32.2% / 1);
 }
 
 .success:hover {
-  background-color: hsl(141 calc(1 * 58.4%) 24.5% / 1);
+    background-color: hsl(141 calc(1 * 58.4%) 24.5% / 1);
 }
 
 .success:active {
-  background-color: hsl(140 calc(1 * 60.7%) 21% / 1);
+    background-color: hsl(140 calc(1 * 60.7%) 21% / 1);
 }
 
 .danger {
-  background-color: hsl(358 calc(1 * 68.8%) 53.5% / 1);
+    background-color: hsl(358 calc(1 * 68.8%) 53.5% / 1);
 }
 
 .danger:hover {
-  background-color: hsl(360 calc(1 * 60.2%) 39.4% / 1);
+    background-color: hsl(360 calc(1 * 60.2%) 39.4% / 1);
 }
 
 .danger:active {
-  background-color: hsl(359 calc(1 * 63.4%) 34.3% / 1);
+    background-color: hsl(359 calc(1 * 63.4%) 34.3% / 1);
 }
 
 ::-webkit-scrollbar {
-  width: 20px;
+    width: 20px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #363636;
+    background: #363636;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #505050;
-  border: 5px solid;
-  border-color: #363636;
-  border-radius: 10px;
+    background: #505050;
+    border: 5px solid;
+    border-color: #363636;
+    border-radius: 10px;
 }
 
 @media only screen and (max-width: 850px) {
-  body {
-    transform: scale(2);
-  }
+    body {
+        transform: scale(2);
+    }
 }
 
 @media only screen and (max-width: 680px) {
-  body {
-    transform: scale(1.5);
-  }
+    body {
+        transform: scale(1.5);
+    }
 }
 
 @media only screen and (max-width: 520px) {
-  body {
-    transform: scale(1);
-  }
+    body {
+        transform: scale(1);
+    }
 }
 
 @media only screen and (max-width: 340px) {
-  body {
-    transform: scale(0.75);
-  }
+    body {
+        transform: scale(0.75);
+    }
 }
