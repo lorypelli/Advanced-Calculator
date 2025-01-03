@@ -15,7 +15,7 @@ function parse(arr: string[]): string {
         .replace(/(\d+)!/g, (number) => {
             return `factorial(${number.replace('!', '')})`;
         })
-        .replace('|', '');
+        .replace(temp, '');
 }
 buttons.forEach((b) =>
     b.addEventListener('click', () => {
@@ -29,7 +29,7 @@ buttons.forEach((b) =>
                 b.classList.contains('primary') ||
                 b.classList.contains('secondary')
             ) {
-                const c = arr.indexOf('|');
+                const c = arr.indexOf(temp);
                 if (
                     b.textContent &&
                     ['+', '-', '×', '÷', '.', '^', '!'].includes(
@@ -48,7 +48,7 @@ buttons.forEach((b) =>
                     arr.splice(c + 1, 1);
                 }
                 for (let i = 0; i < arr.length; i++) {
-                    if (arr[i] == '|' && b.textContent) {
+                    if (arr[i] == temp && b.textContent) {
                         arr.splice(i, 0, b.textContent);
                         arr[i + 1] = temp;
                         break;
@@ -67,9 +67,9 @@ buttons.forEach((b) =>
                         let close = 0;
                         for (let i = 0; i < arr.length; i++) {
                             if (['sin', 'cos', 'tan', 'log'].includes(arr[i])) {
-                                if (arr[i + 1] == '|') {
+                                if (arr[i + 1] == temp) {
                                     arr[i + 1] = '(';
-                                    arr[i + 2] = '|';
+                                    arr[i + 2] = temp;
                                     arr[i + 3] = ')';
                                 }
                             }
@@ -96,7 +96,7 @@ buttons.forEach((b) =>
             switch (b.id) {
                 case 'del': {
                     for (let i = 0; i < arr.length; i++) {
-                        if (arr[0] != '|' && arr[i] == '|') {
+                        if (arr[0] != temp && arr[i] == temp) {
                             if (
                                 (['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
                                     ['i', 'o', 'a'].includes(arr[i - 3]) &&
@@ -124,12 +124,12 @@ buttons.forEach((b) =>
                 }
                 case 'clear': {
                     arr.length = 1;
-                    arr[0] = '|';
+                    arr[0] = temp;
                     break;
                 }
                 case 'left': {
                     for (let i = 0; i < arr.length; i++) {
-                        if (arr[0] != '|' && arr[i] == '|') {
+                        if (arr[0] != temp && arr[i] == temp) {
                             if (['n', 's', 'g'].includes(arr[i - 2])) {
                                 arr[i] = arr[i - 1];
                                 arr[i - 1] = arr[i - 2];
@@ -151,7 +151,7 @@ buttons.forEach((b) =>
                 }
                 case 'right': {
                     for (let i = 0; i < arr.length; i++) {
-                        if (arr[i] == '|') {
+                        if (arr[i] == temp) {
                             if (['s', 'c', 't', 'l'].includes(arr[i + 1])) {
                                 arr[i] = arr[i + 1];
                                 arr[i + 1] = arr[i + 2];
@@ -207,12 +207,12 @@ buttons.forEach((b) =>
                         } else if (finalRes == '-Infinity') {
                             finalRes = '-∞';
                         } else if (isNaN(parseFloat(finalRes))) {
-                            finalRes = result.textContent.replace('|', '');
+                            finalRes = result.textContent.replace(temp, '');
                         }
                     } catch {
-                        finalRes = result.textContent.replace('|', '');
+                        finalRes = result.textContent.replace(temp, '');
                     }
-                    result.textContent = finalRes + '|';
+                    result.textContent = finalRes + temp;
                     break;
                 }
                 case 'exit': {
@@ -280,7 +280,7 @@ document.addEventListener('keydown', (e) => {
                 '!',
             ].includes(key)
         ) {
-            const c = arr.indexOf('|');
+            const c = arr.indexOf(temp);
             if (
                 ['+', '-', '×', '÷', '.', '^', '!'].includes(key) &&
                 ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])
@@ -293,7 +293,7 @@ document.addEventListener('keydown', (e) => {
                 arr.splice(c + 1, 1);
             }
             for (let i = 0; i < arr.length; i++) {
-                if (arr[i] == '|') {
+                if (arr[i] == temp) {
                     arr.splice(
                         i,
                         0,
@@ -322,9 +322,9 @@ document.addEventListener('keydown', (e) => {
                 let close = 0;
                 for (let i = 0; i < arr.length; i++) {
                     if (['sin', 'cos', 'tan', 'log'].includes(arr[i])) {
-                        if (arr[i + 1] == '|') {
+                        if (arr[i + 1] == temp) {
                             arr[i + 1] = '(';
-                            arr[i + 2] = '|';
+                            arr[i + 2] = temp;
                             arr[i + 3] = ')';
                         }
                     }
@@ -347,14 +347,14 @@ document.addEventListener('keydown', (e) => {
                 break;
             }
             case 'r': {
-                const c = arr.indexOf('|');
+                const c = arr.indexOf(temp);
                 arr.splice(c, 1);
-                arr.push('^', '(', '1', '/', '|', ')');
+                arr.push('^', '(', '1', '/', temp, ')');
                 break;
             }
             case 'Backspace': {
                 for (let i = 0; i < arr.length; i++) {
-                    if (arr[0] != '|' && arr[i] == '|') {
+                    if (arr[0] != temp && arr[i] == temp) {
                         if (
                             (['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
                                 ['i', 'o', 'a'].includes(arr[i - 3]) &&
@@ -379,12 +379,12 @@ document.addEventListener('keydown', (e) => {
             }
             case 'Delete': {
                 arr.length = 1;
-                arr[0] = '|';
+                arr[0] = temp;
                 break;
             }
             case 'ArrowLeft': {
                 for (let i = 0; i < arr.length; i++) {
-                    if (arr[0] != '|' && arr[i] == '|') {
+                    if (arr[0] != temp && arr[i] == temp) {
                         if (['n', 's', 'g'].includes(arr[i - 2])) {
                             arr[i] = arr[i - 1];
                             arr[i - 1] = arr[i - 2];
@@ -406,7 +406,7 @@ document.addEventListener('keydown', (e) => {
             }
             case 'ArrowRight': {
                 for (let i = 0; i < arr.length; i++) {
-                    if (arr[i] == '|') {
+                    if (arr[i] == temp) {
                         if (['s', 'c', 't', 'l'].includes(arr[i + 1])) {
                             arr[i] = arr[i + 1];
                             arr[i + 1] = arr[i + 2];
@@ -471,19 +471,19 @@ document.addEventListener('keydown', (e) => {
                             .replace(/(\d+)!/g, (number) => {
                                 return `factorial(${number.replace('!', '')})`;
                             })
-                            .replace('|', ''),
+                            .replace(temp, ''),
                     );
                     if (finalRes == 'Infinity') {
                         finalRes = '∞';
                     } else if (finalRes == '-Infinity') {
                         finalRes = '-∞';
                     } else if (isNaN(parseFloat(finalRes))) {
-                        finalRes = result.textContent.replace('|', '');
+                        finalRes = result.textContent.replace(temp, '');
                     }
                 } catch {
-                    finalRes = result.textContent.replace('|', '');
+                    finalRes = result.textContent.replace(temp, '');
                 }
-                result.textContent = finalRes + '|';
+                result.textContent = finalRes + temp;
                 break;
             }
             case 'Escape': {
