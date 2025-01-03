@@ -1,22 +1,9 @@
+import { temp } from './constants';
+import parse from './parse';
 import './style.css';
+
 const buttons = document.querySelectorAll('button');
-const temp = '|';
-function parse(arr: string[]): string {
-    return arr
-        .join('')
-        .replaceAll('×', '*')
-        .replaceAll('÷', '/')
-        .replaceAll('^', '**')
-        .replaceAll('pi', 'Math.PI')
-        .replaceAll('sin', 'Math.sin')
-        .replaceAll('cos', 'Math.cos')
-        .replaceAll('tan', 'Math.tan')
-        .replaceAll('log', 'Math.log')
-        .replace(/(\d+)!/g, (number) => {
-            return `factorial(${number.replace('!', '')})`;
-        })
-        .replace(temp, '');
-}
+
 buttons.forEach((b) =>
     b.addEventListener('click', () => {
         const result = document.querySelector('#result');
@@ -234,7 +221,9 @@ buttons.forEach((b) =>
         }
     }),
 );
+
 let disable = false;
+
 document.addEventListener('keydown', (e) => {
     if (e.key == 'Enter') {
         e.preventDefault();
@@ -457,22 +446,7 @@ document.addEventListener('keydown', (e) => {
                     }
                 }
                 try {
-                    finalRes = eval(
-                        arr
-                            .join('')
-                            .replaceAll('×', '*')
-                            .replaceAll('÷', '/')
-                            .replaceAll('^', '**')
-                            .replaceAll('pi', 'Math.PI')
-                            .replaceAll('sin', 'Math.sin')
-                            .replaceAll('cos', 'Math.cos')
-                            .replaceAll('tan', 'Math.tan')
-                            .replaceAll('log', 'Math.log')
-                            .replace(/(\d+)!/g, (number) => {
-                                return `factorial(${number.replace('!', '')})`;
-                            })
-                            .replace(temp, ''),
-                    );
+                    finalRes = eval(parse(arr));
                     if (finalRes == 'Infinity') {
                         finalRes = '∞';
                     } else if (finalRes == '-Infinity') {
