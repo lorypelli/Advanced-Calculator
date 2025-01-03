@@ -3,7 +3,6 @@ import { ViteMinifyPlugin } from 'vite-plugin-minify';
 export default defineConfig({
     plugins: [ViteMinifyPlugin()],
     server: {
-        open: true,
         host: '127.0.0.1',
     },
     build: {

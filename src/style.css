@@ -31,7 +31,7 @@ body {
     width: 335px;
     height: 50px;
     color: white;
-    background-color: hsl(225 calc(1 * 6.3%) 12.5% / 1);
+    background-color: hsl(225 calc(1 * 6.25%) 12.549% / 1);
     border: none;
     border-radius: 5px;
 }
@@ -51,19 +51,19 @@ button {
 }
 
 .primary {
-    background-color: hsl(235 calc(1 * 85.6%) 64.7% / 1);
+    background-color: hsl(234.935 calc(1 * 85.556%) 64.706% / 1);
 }
 
 .primary:hover {
-    background-color: hsl(235 calc(1 * 51.4%) 52.4% / 1);
+    background-color: hsl(234.72 calc(1 * 51.44%) 52.353% / 1);
 }
 
 .primary:active {
-    background-color: hsl(235 calc(1 * 46.7%) 44.1% / 1);
+    background-color: hsl(234.857 calc(1 * 46.667%) 44.118% / 1);
 }
 
 .secondary {
-    background-color: hsl(228 calc(1 * 6%) 32.5% / 1);
+    background-color: hsl(228 calc(1 * 6.024%) 32.549% / 1);
 }
 
 .secondary:hover {
@@ -71,31 +71,31 @@ button {
 }
 
 .secondary:active {
-    background-color: hsl(223 calc(1 * 5.8%) 52.9% / 1);
+    background-color: hsl(222.857 calc(1 * 5.833%) 52.941% / 1);
 }
 
 .success {
-    background-color: hsl(142 calc(1 * 56.1%) 32.2% / 1);
+    background-color: hsl(141.522 calc(1 * 56.098%) 32.157% / 1);
 }
 
 .success:hover {
-    background-color: hsl(141 calc(1 * 58.4%) 24.5% / 1);
+    background-color: hsl(141.37 calc(1 * 58.4%) 24.51% / 1);
 }
 
 .success:active {
-    background-color: hsl(140 calc(1 * 60.7%) 21% / 1);
+    background-color: hsl(140.308 calc(1 * 60.748%) 20.98% / 1);
 }
 
 .danger {
-    background-color: hsl(358 calc(1 * 68.8%) 53.5% / 1);
+    background-color: hsl(358.16 calc(1 * 68.776%) 53.529% / 1);
 }
 
 .danger:hover {
-    background-color: hsl(360 calc(1 * 60.2%) 39.4% / 1);
+    background-color: hsl(359.504 calc(1 * 60.199%) 39.412% / 1);
 }
 
 .danger:active {
-    background-color: hsl(359 calc(1 * 63.4%) 34.3% / 1);
+    background-color: hsl(358.919 calc(1 * 63.429%) 34.314% / 1);
 }
 
 ::-webkit-scrollbar {

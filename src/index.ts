@@ -2,7 +2,8 @@ import './style.css';
 const buttons = document.querySelectorAll('button');
 const temp = '|';
 function parse(arr: string[]): string {
-    return arr.join('')
+    return arr
+        .join('')
         .replaceAll('×', '*')
         .replaceAll('÷', '/')
         .replaceAll('^', '**')
@@ -14,13 +15,13 @@ function parse(arr: string[]): string {
         .replace(/(\d+)!/g, (number) => {
             return `factorial(${number.replace('!', '')})`;
         })
-        .replace('|', '')
+        .replace('|', '');
 }
 buttons.forEach((b) =>
     b.addEventListener('click', () => {
-        const result = document.querySelector('#result') as HTMLElement;
-        if (result) {
-            const arr = result.innerText.split('');
+        const result = document.querySelector('#result');
+        if (result && result.textContent) {
+            const arr = result.textContent.split('');
             if (arr[0] == '∞' || arr[0] == '-∞') {
                 arr.splice(0, 1);
             }
@@ -30,24 +31,30 @@ buttons.forEach((b) =>
             ) {
                 const c = arr.indexOf('|');
                 if (
-                    ['+', '-', '×', '÷', '.', '^', '!'].includes(b.innerText) &&
+                    b.textContent &&
+                    ['+', '-', '×', '÷', '.', '^', '!'].includes(
+                        b.textContent,
+                    ) &&
                     ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])
                 ) {
                     arr.splice(c - 1, 1);
                 } else if (
-                    ['+', '-', '×', '÷', '.', '^', '!'].includes(b.innerText) &&
+                    b.textContent &&
+                    ['+', '-', '×', '÷', '.', '^', '!'].includes(
+                        b.textContent,
+                    ) &&
                     ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c + 1])
                 ) {
                     arr.splice(c + 1, 1);
                 }
                 for (let i = 0; i < arr.length; i++) {
-                    if (arr[i] == '|') {
-                        arr.splice(i, 0, b.innerText);
+                    if (arr[i] == '|' && b.textContent) {
+                        arr.splice(i, 0, b.textContent);
                         arr[i + 1] = temp;
                         break;
                     }
                 }
-                switch (b.innerText) {
+                switch (b.textContent) {
                     case '(': {
                         arr.push(')');
                         break;
@@ -93,12 +100,16 @@ buttons.forEach((b) =>
                             if (
                                 (['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
                                     ['i', 'o', 'a'].includes(arr[i - 3]) &&
-                                    ['n', 's', 'g'].includes(arr[i - 2])) || (arr[i - 2] == 'p' && arr[i - 1] == 'i')
+                                    ['n', 's', 'g'].includes(arr[i - 2])) ||
+                                (arr[i - 2] == 'p' && arr[i - 1] == 'i')
                             ) {
                                 if (arr[i - 1] == '(' && arr[i + 1] == ')') {
                                     arr.splice(i - 4, 4);
                                     arr.splice(i - 3, 1);
-                                } else if (arr[i - 2] == 'p' && arr[i - 1] == 'i') {
+                                } else if (
+                                    arr[i - 2] == 'p' &&
+                                    arr[i - 1] == 'i'
+                                ) {
                                     arr.splice(i - 2, 2);
                                 } else {
                                     arr.splice(i - 4, 4);
@@ -196,12 +207,12 @@ buttons.forEach((b) =>
                         } else if (finalRes == '-Infinity') {
                             finalRes = '-∞';
                         } else if (isNaN(parseFloat(finalRes))) {
-                            finalRes = result.innerText.replace('|', '');
+                            finalRes = result.textContent.replace('|', '');
                         }
                     } catch {
-                        finalRes = result.innerText.replace('|', '');
+                        finalRes = result.textContent.replace('|', '');
                     }
-                    result.innerText = finalRes + '|';
+                    result.textContent = finalRes + '|';
                     break;
                 }
                 case 'exit': {
@@ -218,7 +229,7 @@ buttons.forEach((b) =>
                 }
             }
             if (b.id != 'res') {
-                result.innerText = arr.join('');
+                result.textContent = arr.join('');
             }
         }
     }),
@@ -236,8 +247,8 @@ document.addEventListener('keydown', (e) => {
         .replaceAll('*', '×')
         .replaceAll('x', '×')
         .replaceAll('/', '÷');
-    if (result) {
-        const arr = result.innerText.split('');
+    if (result && result.textContent) {
+        const arr = result.textContent.split('');
         if (arr[0] == '∞' || arr[0] == '-∞') {
             arr.splice(0, 1);
         }
@@ -345,9 +356,10 @@ document.addEventListener('keydown', (e) => {
                 for (let i = 0; i < arr.length; i++) {
                     if (arr[0] != '|' && arr[i] == '|') {
                         if (
-                            ['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
-                            ['i', 'o', 'a'].includes(arr[i - 3]) &&
-                            ['n', 's', 'g'].includes(arr[i - 2]) || (arr[i - 2] == 'p' && arr[i - 1] == 'i')
+                            (['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
+                                ['i', 'o', 'a'].includes(arr[i - 3]) &&
+                                ['n', 's', 'g'].includes(arr[i - 2])) ||
+                            (arr[i - 2] == 'p' && arr[i - 1] == 'i')
                         ) {
                             if (arr[i - 1] == '(' && arr[i + 1] == ')') {
                                 arr.splice(i - 4, 4);
@@ -466,12 +478,12 @@ document.addEventListener('keydown', (e) => {
                     } else if (finalRes == '-Infinity') {
                         finalRes = '-∞';
                     } else if (isNaN(parseFloat(finalRes))) {
-                        finalRes = result.innerText.replace('|', '');
+                        finalRes = result.textContent.replace('|', '');
                     }
                 } catch {
-                    finalRes = result.innerText.replace('|', '');
+                    finalRes = result.textContent.replace('|', '');
                 }
-                result.innerText = finalRes + '|';
+                result.textContent = finalRes + '|';
                 break;
             }
             case 'Escape': {
@@ -490,7 +502,7 @@ document.addEventListener('keydown', (e) => {
             }
         }
         if (!['=', 'Enter'].includes(key)) {
-            result.innerText = arr.join('');
+            result.textContent = arr.join('');
         }
     }
 });
