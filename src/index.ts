@@ -1,6 +1,10 @@
-import { temp } from './constants';
-import parse from './parse';
 import './style.css';
+import { close, open } from './utils/change';
+import { allKeys, temp } from './utils/constants';
+import { addBracket, addRoot, correctSymbols, fixBrackets } from './utils/fix';
+import { moveLeft, moveRight } from './utils/move';
+import { del, removeInfNaN, reset } from './utils/remove';
+import { getResult, setResult } from './utils/result';
 
 const buttons = document.querySelectorAll('button');
 
@@ -8,10 +12,8 @@ buttons.forEach((b) =>
     b.addEventListener('click', () => {
         const result = document.querySelector('#result');
         if (result && result.textContent) {
-            const arr = result.textContent.split('');
-            if (arr[0] == '∞' || arr[0] == '-∞') {
-                arr.splice(0, 1);
-            }
+            const arr = result.textContent.toLowerCase().split('');
+            removeInfNaN(arr);
             if (
                 b.classList.contains('primary') ||
                 b.classList.contains('secondary')
@@ -35,7 +37,7 @@ buttons.forEach((b) =>
                     arr.splice(c + 1, 1);
                 }
                 for (let i = 0; i < arr.length; i++) {
-                    if (arr[i] == temp && b.textContent) {
+                    if (b.textContent && arr[i] == temp) {
                         arr.splice(i, 0, b.textContent);
                         arr[i + 1] = temp;
                         break;
@@ -43,180 +45,50 @@ buttons.forEach((b) =>
                 }
                 switch (b.textContent) {
                     case '(': {
-                        arr.push(')');
+                        addBracket(arr);
                         break;
                     }
                     case 'sin':
                     case 'cos':
                     case 'tan':
                     case 'log': {
-                        let open = 0;
-                        let close = 0;
-                        for (let i = 0; i < arr.length; i++) {
-                            if (['sin', 'cos', 'tan', 'log'].includes(arr[i])) {
-                                if (arr[i + 1] == temp) {
-                                    arr[i + 1] = '(';
-                                    arr[i + 2] = temp;
-                                    arr[i + 3] = ')';
-                                }
-                            }
-                            switch (arr[i]) {
-                                case '(': {
-                                    open++;
-                                    break;
-                                }
-                                case ')': {
-                                    close++;
-                                    break;
-                                }
-                            }
-                        }
-                        if (open > close) {
-                            for (let i = 0; i < open - close; i++) {
-                                arr.push(')');
-                            }
-                        }
+                        fixBrackets(arr);
                         break;
                     }
                 }
             }
             switch (b.id) {
                 case 'del': {
-                    for (let i = 0; i < arr.length; i++) {
-                        if (arr[0] != temp && arr[i] == temp) {
-                            if (
-                                (['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
-                                    ['i', 'o', 'a'].includes(arr[i - 3]) &&
-                                    ['n', 's', 'g'].includes(arr[i - 2])) ||
-                                (arr[i - 2] == 'p' && arr[i - 1] == 'i')
-                            ) {
-                                if (arr[i - 1] == '(' && arr[i + 1] == ')') {
-                                    arr.splice(i - 4, 4);
-                                    arr.splice(i - 3, 1);
-                                } else if (
-                                    arr[i - 2] == 'p' &&
-                                    arr[i - 1] == 'i'
-                                ) {
-                                    arr.splice(i - 2, 2);
-                                } else {
-                                    arr.splice(i - 4, 4);
-                                }
-                            } else {
-                                arr.splice(i - 1, 1);
-                            }
-                            break;
-                        }
-                    }
+                    del(arr);
                     break;
                 }
                 case 'clear': {
-                    arr.length = 1;
-                    arr[0] = temp;
+                    reset(arr);
                     break;
                 }
                 case 'left': {
-                    for (let i = 0; i < arr.length; i++) {
-                        if (arr[0] != temp && arr[i] == temp) {
-                            if (['n', 's', 'g'].includes(arr[i - 2])) {
-                                arr[i] = arr[i - 1];
-                                arr[i - 1] = arr[i - 2];
-                                arr[i - 2] = arr[i - 3];
-                                arr[i - 3] = arr[i - 4];
-                                arr[i - 4] = temp;
-                            } else if (arr[i - 1] == 'i') {
-                                arr[i] = arr[i - 1];
-                                arr[i - 1] = arr[i - 2];
-                                arr[i - 2] = temp;
-                            } else {
-                                arr[i] = arr[i - 1];
-                                arr[i - 1] = temp;
-                            }
-                            break;
-                        }
-                    }
+                    moveLeft(arr);
                     break;
                 }
                 case 'right': {
-                    for (let i = 0; i < arr.length; i++) {
-                        if (arr[i] == temp) {
-                            if (['s', 'c', 't', 'l'].includes(arr[i + 1])) {
-                                arr[i] = arr[i + 1];
-                                arr[i + 1] = arr[i + 2];
-                                arr[i + 2] = arr[i + 3];
-                                arr[i + 3] = arr[i + 4];
-                                arr[i + 4] = temp;
-                            } else if (arr[i + 1] == 'p') {
-                                arr[i] = arr[i + 1];
-                                arr[i + 1] = arr[i + 2];
-                                arr[i + 2] = temp;
-                            } else {
-                                arr[i] = arr[i + 1];
-                                arr[i + 1] = temp;
-                            }
-                            break;
-                        }
-                    }
+                    moveRight(arr);
                     break;
                 }
                 case 'res': {
-                    let finalRes = '';
-                    for (let i = 0; i < arr.length; i++) {
-                        while (
-                            arr[0] != '(' &&
-                            arr[i] == '(' &&
-                            arr[i - 1] != '×' &&
-                            [
-                                '1',
-                                '2',
-                                '3',
-                                '4',
-                                '5',
-                                '6',
-                                '7',
-                                '8',
-                                '9',
-                                '0',
-                            ].includes(arr[i - 1])
-                        ) {
-                            arr.splice(i, 0, '×');
-                        }
-                        while (
-                            !isNaN(parseFloat(arr[i - 1])) &&
-                            ['s', 'c', 't', 'l', 'p'].includes(arr[i])
-                        ) {
-                            arr.splice(i, 0, '×');
-                        }
-                    }
-                    try {
-                        finalRes = eval(parse(arr));
-                        if (finalRes == 'Infinity') {
-                            finalRes = '∞';
-                        } else if (finalRes == '-Infinity') {
-                            finalRes = '-∞';
-                        } else if (isNaN(parseFloat(finalRes))) {
-                            finalRes = result.textContent.replace(temp, '');
-                        }
-                    } catch {
-                        finalRes = result.textContent.replace(temp, '');
-                    }
-                    result.textContent = finalRes + temp;
+                    getResult(arr, result);
                     break;
                 }
                 case 'exit': {
-                    const table = document.querySelectorAll('table');
-                    table[0].style.display = 'none';
-                    table[1].style.display = 'block';
+                    close();
                     break;
                 }
                 case 'open': {
-                    const table = document.querySelectorAll('table');
-                    table[1].style.display = 'none';
-                    table[0].style.display = 'block';
+                    open();
                     break;
                 }
             }
             if (b.id != 'res') {
-                result.textContent = arr.join('');
+                setResult(arr, result);
             }
         }
     }),
@@ -225,50 +97,22 @@ buttons.forEach((b) =>
 let disable = false;
 
 document.addEventListener('keydown', (e) => {
-    if (e.key == 'Enter') {
+    if (allKeys.includes(e.key.toLowerCase())) {
         e.preventDefault();
     }
     if (disable && e.key != 'o') {
         return;
     }
-    const result = document.querySelector('#result') as HTMLElement;
+    const result = document.querySelector('#result');
     const key = e.key
+        .toLowerCase()
         .replaceAll('*', '×')
         .replaceAll('x', '×')
         .replaceAll('/', '÷');
     if (result && result.textContent) {
-        const arr = result.textContent.split('');
-        if (arr[0] == '∞' || arr[0] == '-∞') {
-            arr.splice(0, 1);
-        }
-        if (
-            [
-                '1',
-                '2',
-                '3',
-                '4',
-                '5',
-                '6',
-                '7',
-                '8',
-                '9',
-                '0',
-                '+',
-                '-',
-                '×',
-                '÷',
-                '(',
-                ')',
-                's',
-                'c',
-                't',
-                'l',
-                'p',
-                '.',
-                '^',
-                '!',
-            ].includes(key)
-        ) {
+        const arr = result.textContent.toLowerCase().split('');
+        removeInfNaN(arr);
+        if (allKeys.includes(key)) {
             const c = arr.indexOf(temp);
             if (
                 ['+', '-', '×', '÷', '.', '^', '!'].includes(key) &&
@@ -281,202 +125,58 @@ document.addEventListener('keydown', (e) => {
             ) {
                 arr.splice(c + 1, 1);
             }
-            for (let i = 0; i < arr.length; i++) {
-                if (arr[i] == temp) {
-                    arr.splice(
-                        i,
-                        0,
-                        key
-                            .replaceAll('s', 'sin')
-                            .replaceAll('c', 'cos')
-                            .replaceAll('t', 'tan')
-                            .replaceAll('l', 'log')
-                            .replaceAll('p', 'pi'),
-                    );
-                    arr[i + 1] = temp;
-                    break;
-                }
-            }
+            correctSymbols(arr, key);
         }
         switch (key) {
             case '(': {
-                arr.push(')');
+                addBracket(arr);
                 break;
             }
             case 's':
             case 'c':
             case 't':
             case 'l': {
-                let open = 0;
-                let close = 0;
-                for (let i = 0; i < arr.length; i++) {
-                    if (['sin', 'cos', 'tan', 'log'].includes(arr[i])) {
-                        if (arr[i + 1] == temp) {
-                            arr[i + 1] = '(';
-                            arr[i + 2] = temp;
-                            arr[i + 3] = ')';
-                        }
-                    }
-                    switch (arr[i]) {
-                        case '(': {
-                            open++;
-                            break;
-                        }
-                        case ')': {
-                            close++;
-                            break;
-                        }
-                    }
-                }
-                if (open > close) {
-                    for (let i = 0; i < open - close; i++) {
-                        arr.push(')');
-                    }
-                }
+                fixBrackets(arr);
                 break;
             }
             case 'r': {
-                const c = arr.indexOf(temp);
-                arr.splice(c, 1);
-                arr.push('^', '(', '1', '/', temp, ')');
+                addRoot(arr);
                 break;
             }
-            case 'Backspace': {
-                for (let i = 0; i < arr.length; i++) {
-                    if (arr[0] != temp && arr[i] == temp) {
-                        if (
-                            (['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
-                                ['i', 'o', 'a'].includes(arr[i - 3]) &&
-                                ['n', 's', 'g'].includes(arr[i - 2])) ||
-                            (arr[i - 2] == 'p' && arr[i - 1] == 'i')
-                        ) {
-                            if (arr[i - 1] == '(' && arr[i + 1] == ')') {
-                                arr.splice(i - 4, 4);
-                                arr.splice(i - 3, 1);
-                            } else if (arr[i - 2] == 'p' && arr[i - 1] == 'i') {
-                                arr.splice(i - 2, 2);
-                            } else {
-                                arr.splice(i - 4, 4);
-                            }
-                        } else {
-                            arr.splice(i - 1, 1);
-                        }
-                        break;
-                    }
-                }
+            case 'backspace': {
+                del(arr);
                 break;
             }
-            case 'Delete': {
-                arr.length = 1;
-                arr[0] = temp;
+            case 'delete': {
+                reset(arr);
                 break;
             }
-            case 'ArrowLeft': {
-                for (let i = 0; i < arr.length; i++) {
-                    if (arr[0] != temp && arr[i] == temp) {
-                        if (['n', 's', 'g'].includes(arr[i - 2])) {
-                            arr[i] = arr[i - 1];
-                            arr[i - 1] = arr[i - 2];
-                            arr[i - 2] = arr[i - 3];
-                            arr[i - 3] = arr[i - 4];
-                            arr[i - 4] = temp;
-                        } else if (arr[i - 1] == 'i') {
-                            arr[i] = arr[i - 1];
-                            arr[i - 1] = arr[i - 2];
-                            arr[i - 2] = temp;
-                        } else {
-                            arr[i] = arr[i - 1];
-                            arr[i - 1] = temp;
-                        }
-                        break;
-                    }
-                }
+            case 'arrowleft': {
+                moveLeft(arr);
                 break;
             }
-            case 'ArrowRight': {
-                for (let i = 0; i < arr.length; i++) {
-                    if (arr[i] == temp) {
-                        if (['s', 'c', 't', 'l'].includes(arr[i + 1])) {
-                            arr[i] = arr[i + 1];
-                            arr[i + 1] = arr[i + 2];
-                            arr[i + 2] = arr[i + 3];
-                            arr[i + 3] = arr[i + 4];
-                            arr[i + 4] = temp;
-                        } else if (arr[i + 1] == 'p') {
-                            arr[i] = arr[i + 1];
-                            arr[i + 1] = arr[i + 2];
-                            arr[i + 2] = temp;
-                        } else {
-                            arr[i] = arr[i + 1];
-                            arr[i + 1] = temp;
-                        }
-                        break;
-                    }
-                }
+            case 'arrowright': {
+                moveRight(arr);
                 break;
             }
             case '=':
-            case 'Enter': {
-                let finalRes = '';
-                for (let i = 0; i < arr.length; i++) {
-                    while (
-                        arr[0] != '(' &&
-                        arr[i] == '(' &&
-                        arr[i - 1] != '×' &&
-                        [
-                            '1',
-                            '2',
-                            '3',
-                            '4',
-                            '5',
-                            '6',
-                            '7',
-                            '8',
-                            '9',
-                            '0',
-                        ].includes(arr[i - 1])
-                    ) {
-                        arr.splice(i, 0, '×');
-                    }
-                    while (
-                        !isNaN(parseFloat(arr[i - 1])) &&
-                        ['s', 'c', 't', 'l', 'p'].includes(arr[i])
-                    ) {
-                        arr.splice(i, 0, '×');
-                    }
-                }
-                try {
-                    finalRes = eval(parse(arr));
-                    if (finalRes == 'Infinity') {
-                        finalRes = '∞';
-                    } else if (finalRes == '-Infinity') {
-                        finalRes = '-∞';
-                    } else if (isNaN(parseFloat(finalRes))) {
-                        finalRes = result.textContent.replace(temp, '');
-                    }
-                } catch {
-                    finalRes = result.textContent.replace(temp, '');
-                }
-                result.textContent = finalRes + temp;
+            case 'enter': {
+                getResult(arr, result);
                 break;
             }
-            case 'Escape': {
-                const table = document.querySelectorAll('table');
-                table[0].style.display = 'none';
-                table[1].style.display = 'block';
+            case 'escape': {
+                close();
                 disable = true;
                 break;
             }
             case 'o': {
-                const table = document.querySelectorAll('table');
-                table[1].style.display = 'none';
-                table[0].style.display = 'block';
+                open();
                 disable = false;
                 break;
             }
         }
-        if (!['=', 'Enter'].includes(key)) {
-            result.textContent = arr.join('');
+        if (!['=', 'enter'].includes(key)) {
+            setResult(arr, result);
         }
     }
 });
