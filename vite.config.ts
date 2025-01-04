@@ -7,12 +7,6 @@ export default defineConfig({
     },
     build: {
         minify: 'terser',
-        terserOptions: {
-            compress: {
-                ecma: 2020,
-                passes: 10,
-            },
-        },
         rollupOptions: {
             output: {
                 dir: './dist',
