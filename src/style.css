@@ -1,4 +1,7 @@
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     overflow: hidden;
     font-family: 'Martian Mono', monospace;
     text-align: center;
@@ -18,7 +21,6 @@ body {
     background-color: #363636;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
     height: 100vh;
     transform: scale(2.5);
 }
@@ -38,6 +40,10 @@ body {
 
 #closedCalculator {
     display: none;
+}
+
+td {
+    padding: 1px;
 }
 
 button {
