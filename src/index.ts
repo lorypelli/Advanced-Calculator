@@ -12,7 +12,7 @@ buttons.forEach((b) =>
     b.addEventListener('click', () => {
         const result = document.querySelector('#result');
         if (result && result.textContent) {
-            const arr = result.textContent.toLowerCase().split('');
+            const arr = result.textContent.split('');
             removeInfNaN(arr);
             if (
                 b.classList.contains('primary') ||
@@ -110,7 +110,7 @@ document.addEventListener('keydown', (e) => {
         .replaceAll('x', '×')
         .replaceAll('/', '÷');
     if (result && result.textContent) {
-        const arr = result.textContent.toLowerCase().split('');
+        const arr = result.textContent.split('');
         removeInfNaN(arr);
         if (allKeys.includes(key)) {
             const c = arr.indexOf(temp);

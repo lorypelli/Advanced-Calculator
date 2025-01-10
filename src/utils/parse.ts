@@ -6,7 +6,7 @@ export default function parse(arr: string[]): string {
         .replaceAll('×', '*')
         .replaceAll('÷', '/')
         .replaceAll('^', '**')
-        .replaceAll('pi', 'Math.PI')
+        .replaceAll('PI', 'Math.PI')
         .replaceAll('sin', 'Math.sin')
         .replaceAll('cos', 'Math.cos')
         .replaceAll('tan', 'Math.tan')

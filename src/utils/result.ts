@@ -16,7 +16,7 @@ export function getResult(arr: string[], result: Element) {
         }
         while (
             !isNaN(parseFloat(arr[i - 1])) &&
-            ['s', 'c', 't', 'l', 'p'].includes(arr[i])
+            ['s', 'c', 't', 'l', 'P'].includes(arr[i])
         ) {
             arr.splice(i, 0, '×');
         }

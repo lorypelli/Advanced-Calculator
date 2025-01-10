@@ -11,7 +11,7 @@ export function correctSymbols(arr: string[], key: string) {
                     .replaceAll('c', 'cos')
                     .replaceAll('t', 'tan')
                     .replaceAll('l', 'log')
-                    .replaceAll('p', 'pi'),
+                    .replaceAll('p', 'PI'),
             );
             arr[i + 1] = temp;
             break;

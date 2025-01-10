@@ -10,7 +10,7 @@ export function moveLeft(arr: string[]) {
                     arr[i - 2] = arr[i - 3];
                     arr[i - 3] = arr[i - 4];
                     arr[i - 4] = temp;
-                } else if (arr[i - 1] == 'i') {
+                } else if (arr[i - 1] == 'I') {
                     arr[i] = arr[i - 1];
                     arr[i - 1] = arr[i - 2];
                     arr[i - 2] = temp;
@@ -33,7 +33,7 @@ export function moveRight(arr: string[]) {
                 arr[i + 2] = arr[i + 3];
                 arr[i + 3] = arr[i + 4];
                 arr[i + 4] = temp;
-            } else if (arr[i + 1] == 'p') {
+            } else if (arr[i + 1] == 'P') {
                 arr[i] = arr[i + 1];
                 arr[i + 1] = arr[i + 2];
                 arr[i + 2] = temp;
