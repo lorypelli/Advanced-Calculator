@@ -93,7 +93,9 @@ buttons.forEach((b) =>
 let disable = false;
 
 document.addEventListener('keydown', (e) => {
-    e.preventDefault();
+    if (e.key == 'Enter') {
+        e.preventDefault();
+    }
     if (disable && e.key != 'o') {
         return;
     }
