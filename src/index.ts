@@ -99,6 +99,8 @@ let disable = false;
 document.addEventListener('keydown', (e) => {
     if (allKeys.includes(e.key.toLowerCase())) {
         e.preventDefault();
+    } else {
+        return;
     }
     if (disable && e.key != 'o') {
         return;

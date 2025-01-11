@@ -27,12 +27,13 @@ export function fixBrackets(arr: string[]) {
     let open = 0;
     let close = 0;
     for (let i = 0; i < arr.length; i++) {
-        if (['sin', 'cos', 'tan', 'log'].includes(arr[i])) {
-            if (arr[i + 1] == temp) {
-                arr[i + 1] = '(';
-                arr[i + 2] = temp;
-                arr[i + 3] = ')';
-            }
+        if (
+            ['sin', 'cos', 'tan', 'log'].includes(arr[i]) &&
+            arr[i + 1] == temp
+        ) {
+            arr[i + 1] = '(';
+            arr[i + 2] = temp;
+            arr[i + 3] = ')';
         }
         switch (arr[i]) {
             case '(': {

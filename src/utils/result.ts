@@ -22,13 +22,15 @@ export function getResult(arr: string[], result: Element) {
         }
     }
     try {
-        finalRes = eval(parse(arr));
-        if (finalRes == 'Infinity') {
-            finalRes = '∞';
-        } else if (finalRes == '-Infinity') {
-            finalRes = '-∞';
-        } else if (isNaN(parseFloat(finalRes))) {
-            finalRes = 'NaN';
+        finalRes = arr.length > 1 ? eval(parse(arr)) : '';
+        if (finalRes != '') {
+            if (finalRes == 'Infinity') {
+                finalRes = '∞';
+            } else if (finalRes == '-Infinity') {
+                finalRes = '-∞';
+            } else if (isNaN(parseFloat(finalRes))) {
+                finalRes = 'NaN';
+            }
         }
     } catch {
         finalRes = result.textContent?.replace(temp, '') || '';
