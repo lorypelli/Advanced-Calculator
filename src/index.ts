@@ -93,11 +93,7 @@ buttons.forEach((b) =>
 let disable = false;
 
 document.addEventListener('keydown', (e) => {
-    if (allKeys.includes(e.key.toLowerCase())) {
-        e.preventDefault();
-    } else {
-        return;
-    }
+    e.preventDefault();
     if (disable && e.key != 'o') {
         return;
     }
