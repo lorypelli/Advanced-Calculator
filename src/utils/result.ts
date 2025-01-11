@@ -17,7 +17,7 @@ export function getResult(arr: string[], result: Element) {
         }
     }
     try {
-        finalRes = arr[0] != temp ? eval(parse(arr)) : '';
+        finalRes = arr[0] != temp || arr.length > 1 ? eval(parse(arr)) : '';
         if (finalRes != '') {
             if (finalRes == 'Infinity') {
                 finalRes = '∞';
