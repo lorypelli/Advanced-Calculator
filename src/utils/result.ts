@@ -5,7 +5,6 @@ export function getResult(arr: string[], result: Element) {
     let finalRes = '';
     for (let i = 0; i < arr.length; i++) {
         while (
-            arr[0] != '(' &&
             arr[i] == '(' &&
             arr[i - 1] != '×' &&
             ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(
