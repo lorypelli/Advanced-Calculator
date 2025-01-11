@@ -1,4 +1,4 @@
-import { temp } from './constants';
+import { getFunctionChars, numbers, temp } from './constants';
 import parse from './parse';
 
 export function getResult(arr: string[], result: Element) {
@@ -7,13 +7,11 @@ export function getResult(arr: string[], result: Element) {
         if (
             (arr[i] == '(' &&
                 arr[i - 1] != '×' &&
-                ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(
-                    arr[i - 1],
-                )) ||
+                numbers.includes(arr[i - 1])) ||
             ((arr[i - 1] == ')' ||
                 arr[i - 1] == 'I' ||
                 !isNaN(parseFloat(arr[i - 1]))) &&
-                ['s', 'c', 't', 'l', 'P'].includes(arr[i]))
+                [...getFunctionChars(0), 'P'].includes(arr[i]))
         ) {
             arr.splice(i, 0, '×');
         }

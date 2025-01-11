@@ -1,6 +1,6 @@
 import './style.css';
 import { close, open } from './utils/change';
-import { allKeys, temp } from './utils/constants';
+import { allKeys, symbols, temp } from './utils/constants';
 import { addBracket, addRoot, correctSymbols, fixBrackets } from './utils/fix';
 import { moveLeft, moveRight } from './utils/move';
 import { del, removeInfNaN, reset } from './utils/remove';
@@ -21,18 +21,14 @@ buttons.forEach((b) =>
                 const c = arr.indexOf(temp);
                 if (
                     b.textContent &&
-                    ['+', '-', '×', '÷', '.', '^', '!'].includes(
-                        b.textContent,
-                    ) &&
-                    ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])
+                    symbols.includes(b.textContent) &&
+                    symbols.includes(arr[c - 1])
                 ) {
                     arr.splice(c - 1, 1);
                 } else if (
                     b.textContent &&
-                    ['+', '-', '×', '÷', '.', '^', '!'].includes(
-                        b.textContent,
-                    ) &&
-                    ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c + 1])
+                    symbols.includes(b.textContent) &&
+                    symbols.includes(arr[c + 1])
                 ) {
                     arr.splice(c + 1, 1);
                 }
@@ -116,15 +112,9 @@ document.addEventListener('keydown', (e) => {
         removeInfNaN(arr);
         if (allKeys.includes(key)) {
             const c = arr.indexOf(temp);
-            if (
-                ['+', '-', '×', '÷', '.', '^', '!'].includes(key) &&
-                ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c - 1])
-            ) {
+            if (symbols.includes(key) && symbols.includes(arr[c - 1])) {
                 arr.splice(c - 1, 1);
-            } else if (
-                ['+', '-', '×', '÷', '.', '^', '!'].includes(key) &&
-                ['+', '-', '×', '÷', '.', '^', '!'].includes(arr[c + 1])
-            ) {
+            } else if (symbols.includes(key) && symbols.includes(arr[c + 1])) {
                 arr.splice(c + 1, 1);
             }
             correctSymbols(arr, key);

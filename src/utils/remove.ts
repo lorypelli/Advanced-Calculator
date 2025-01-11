@@ -1,4 +1,4 @@
-import { temp } from './constants';
+import { getFunctionChars, temp } from './constants';
 
 export function removeInfNaN(arr: string[]) {
     if (arr[0] == '∞' || arr[0] == '-∞') {
@@ -13,9 +13,9 @@ export function del(arr: string[]) {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i] == temp) {
                 if (
-                    (['s', 'c', 't', 'l'].includes(arr[i - 4]) &&
-                        ['i', 'o', 'a'].includes(arr[i - 3]) &&
-                        ['n', 's', 'g'].includes(arr[i - 2])) ||
+                    (getFunctionChars(0).includes(arr[i - 4]) &&
+                        getFunctionChars(1).includes(arr[i - 3]) &&
+                        getFunctionChars(2).includes(arr[i - 2])) ||
                     (arr[i - 2] == 'P' && arr[i - 1] == 'I')
                 ) {
                     if (arr[i - 1] == '(' && arr[i + 1] == ')') {
