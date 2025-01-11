@@ -4,7 +4,7 @@ import parse from './parse';
 export function getResult(arr: string[], result: Element) {
     let finalRes = '';
     for (let i = 0; i < arr.length; i++) {
-        while (
+        if (
             arr[i] == '(' &&
             arr[i - 1] != '×' &&
             ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(
@@ -13,7 +13,7 @@ export function getResult(arr: string[], result: Element) {
         ) {
             arr.splice(i, 0, '×');
         }
-        while (
+        if (
             !isNaN(parseFloat(arr[i - 1])) &&
             ['s', 'c', 't', 'l', 'P'].includes(arr[i])
         ) {
