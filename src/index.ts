@@ -93,9 +93,6 @@ buttons.forEach((b) =>
 let disable = false;
 
 document.addEventListener('keydown', (e) => {
-    if (e.key == 'Enter') {
-        e.preventDefault();
-    }
     if (disable && e.key != 'o') {
         return;
     }
@@ -119,6 +116,7 @@ document.addEventListener('keydown', (e) => {
         }
         switch (key) {
             case '(': {
+                e.preventDefault();
                 addBracket(arr);
                 break;
             }
@@ -126,40 +124,49 @@ document.addEventListener('keydown', (e) => {
             case 'c':
             case 't':
             case 'l': {
+                e.preventDefault();
                 fixBrackets(arr);
                 break;
             }
             case 'r': {
+                e.preventDefault();
                 addRoot(arr);
                 break;
             }
             case 'backspace': {
+                e.preventDefault();
                 del(arr);
                 break;
             }
             case 'delete': {
+                e.preventDefault();
                 reset(arr);
                 break;
             }
             case 'arrowleft': {
+                e.preventDefault();
                 moveLeft(arr);
                 break;
             }
             case 'arrowright': {
+                e.preventDefault();
                 moveRight(arr);
                 break;
             }
             case '=':
             case 'enter': {
+                e.preventDefault();
                 getResult(arr, result);
                 break;
             }
             case 'escape': {
+                e.preventDefault();
                 close();
                 disable = true;
                 break;
             }
             case 'o': {
+                e.preventDefault();
                 open();
                 disable = false;
                 break;
