@@ -4,7 +4,7 @@ export function moveLeft(arr: string[]) {
     if (arr[0] != temp) {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i] == temp) {
-                if (['n', 's', 'g'].includes(arr[i - 2])) {
+                if (getFunctionChars(2).includes(arr[i - 2])) {
                     arr[i] = arr[i - 1];
                     arr[i - 1] = arr[i - 2];
                     arr[i - 2] = arr[i - 3];
