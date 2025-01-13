@@ -15,25 +15,24 @@ buttons.forEach((b) =>
             const arr = result.textContent.split('');
             removeInfNaN(arr);
             if (
-                b.classList.contains('primary') ||
-                b.classList.contains('secondary')
+                b.textContent &&
+                (b.classList.contains('primary') ||
+                    b.classList.contains('secondary'))
             ) {
                 const c = arr.indexOf(temp);
                 if (
-                    b.textContent &&
                     symbols.includes(b.textContent) &&
                     symbols.includes(arr[c - 1])
                 ) {
                     arr.splice(c - 1, 1);
                 } else if (
-                    b.textContent &&
                     symbols.includes(b.textContent) &&
                     symbols.includes(arr[c + 1])
                 ) {
                     arr.splice(c + 1, 1);
                 }
                 for (let i = 0; i < arr.length; i++) {
-                    if (b.textContent && arr[i] == temp) {
+                    if (arr[i] == temp) {
                         arr.splice(i, 0, b.textContent);
                         arr[i + 1] = temp;
                         break;
