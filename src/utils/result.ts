@@ -7,7 +7,7 @@ export function getResult(arr: string[], result: Element) {
         if (
             (arr[i] == '(' &&
                 arr[i - 1] != '×' &&
-                numbers.includes(arr[i - 1])) ||
+                [...numbers, ')'].includes(arr[i - 1])) ||
             ((arr[i - 1] == ')' ||
                 arr[i - 1] == 'I' ||
                 !isNaN(parseFloat(arr[i - 1]))) &&
