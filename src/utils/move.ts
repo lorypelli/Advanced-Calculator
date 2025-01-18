@@ -1,4 +1,4 @@
-import { getFunctionChars, temp } from './constants';
+import { getFunctionChars, getPIChars, temp } from './constants';
 
 export function moveLeft(arr: string[]) {
     if (arr[0] != temp) {
@@ -10,7 +10,7 @@ export function moveLeft(arr: string[]) {
                     arr[i - 2] = arr[i - 3];
                     arr[i - 3] = arr[i - 4];
                     arr[i - 4] = temp;
-                } else if (arr[i - 1] == 'I') {
+                } else if (arr[i - 1] == getPIChars(1)) {
                     arr[i] = arr[i - 1];
                     arr[i - 1] = arr[i - 2];
                     arr[i - 2] = temp;
@@ -33,7 +33,7 @@ export function moveRight(arr: string[]) {
                 arr[i + 2] = arr[i + 3];
                 arr[i + 3] = arr[i + 4];
                 arr[i + 4] = temp;
-            } else if (arr[i + 1] == 'P') {
+            } else if (arr[i + 1] == getPIChars(0)) {
                 arr[i] = arr[i + 1];
                 arr[i + 1] = arr[i + 2];
                 arr[i + 2] = temp;

@@ -33,6 +33,10 @@ export const symbols = ['+', '-', '×', '÷', '.', '^', '!'];
 
 export const functions = ['sin', 'cos', 'tan', 'log'];
 
-export function getFunctionChars(index: number): string[] {
-    return Array.from(new Set(functions.map((f) => f.charAt(index))));
+export function getFunctionChars(index: number) {
+    return Array.from(new Set(functions.map((f) => f[index])));
+}
+
+export function getPIChars(index: number) {
+    return 'PI'[index];
 }

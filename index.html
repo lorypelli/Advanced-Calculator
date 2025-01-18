@@ -21,11 +21,11 @@
         <script type="module" src="./src/index.ts"></script>
         <script>
             function factorial(n) {
-                if (n == 0) {
-                    return 1;
-                } else {
-                    return n * factorial(n - 1);
+                let res = 1;
+                for (let i = n; i > 1; i--) {
+                    res *= i;
                 }
+                return res;
             }
         </script>
     </head>
