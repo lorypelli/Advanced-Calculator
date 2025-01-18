@@ -1,5 +1,7 @@
 export const temp = '|';
 
+export const PI = 'PI';
+
 export const allKeys = [
     '1',
     '2',
@@ -38,5 +40,5 @@ export function getFunctionChars(index: number) {
 }
 
 export function getPIChars(index: number) {
-    return 'PI'[index];
+    return PI[index];
 }

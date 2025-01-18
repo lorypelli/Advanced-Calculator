@@ -1,4 +1,4 @@
-import { functions, temp } from './constants';
+import { functions, PI, temp } from './constants';
 
 export function correctSymbols(arr: string[], key: string) {
     for (let i = 0; i < arr.length; i++) {
@@ -11,7 +11,7 @@ export function correctSymbols(arr: string[], key: string) {
                     .replaceAll('c', 'cos')
                     .replaceAll('t', 'tan')
                     .replaceAll('l', 'log')
-                    .replaceAll('p', 'PI'),
+                    .replaceAll('p', PI),
             );
             arr[i + 1] = temp;
             break;

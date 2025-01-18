@@ -1,4 +1,4 @@
-import { temp } from './constants';
+import { PI, temp } from './constants';
 
 export default function parse(arr: string[]): string {
     return arr
@@ -6,7 +6,7 @@ export default function parse(arr: string[]): string {
         .replaceAll('×', '*')
         .replaceAll('÷', '/')
         .replaceAll('^', '**')
-        .replaceAll('PI', 'Math.PI')
+        .replaceAll(PI, 'Math.PI')
         .replaceAll('sin', 'Math.sin')
         .replaceAll('cos', 'Math.cos')
         .replaceAll('tan', 'Math.tan')
