@@ -1,0 +1,18 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "ac",
+    "compatibility_date": "2026-02-15",
+    "compatibility_flags": ["nodejs_compat"],
+    "main": "dist/index.js",
+    "route": {
+        "pattern": "ac.lorypelli.dev",
+        "custom_domain": true
+    },
+    "assets": {
+        "binding": "ASSETS",
+        "directory": "./dist"
+    },
+    "build": {
+        "command": "pnpm build"
+    }
+}
